@@ -17,7 +17,7 @@ class Module extends Model
 
     public static function getModulesForMenu( $user_id )
     {
-        $permissions_user   = Permission::getPermissions( $user_id );
+        /*$permissions_user   = Permission::getPermissions( $user_id );
 
         $modules_user       = [];
 
@@ -63,7 +63,11 @@ class Module extends Model
                 return $item;
             })->toArray();
 
-        $menu_modules = array_merge( $permissions_modules_user, $permissions_modules_menu );
+        $menu_modules = array_merge( $permissions_modules_user, $permissions_modules_menu );*/
+
+        # quitar comentarios y la consulta de abajo menos el foreach cuando se implemente permisos
+        $menu_modules = self::select('id', 'module_id', 'name', 'icon', 'route')
+            ->get()->toArray();
 
         $menu_sidebar = [];
 
@@ -74,7 +78,7 @@ class Module extends Model
 
         }
 
-        if ( !session()->get('access_routes') ) {
+        /*if ( !session()->get('access_routes') ) {
 
             $item_routes = [];
 
@@ -91,7 +95,7 @@ class Module extends Model
             ]);
 
 
-        }
+        }*/
 
         return $menu_sidebar;
     }

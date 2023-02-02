@@ -73,7 +73,7 @@
                                     <td>{{ $row->email }}</td>
                                     <td wire:key="{{ $row->id }}" class="text-right">
 
-                                        @if( $row->write == 1 )
+
                                             <div wire:ignore class="btn-group dropdown mb-2">
                                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Opciones
@@ -94,11 +94,7 @@
 
                                                 </div>
                                             </div>
-                                        @else
-                                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
-                                                Opciones
-                                            </button>
-                                        @endif
+
 
                                     </td>
                                 </tr>

@@ -21,11 +21,11 @@ class School extends Model
     public static function getAliveSchools( $schools )
     {
 
-        $permissions = ___accessPermissions( $schools );
+        //$permissions = ___accessPermissions( $schools );
 
         $result      = null;
 
-        $query       = self::whereIn('id', $permissions->schools_selected)
+        $query       = self::whereIn('id', $schools)
             ->where('status', self::ALIVE)
             ->get();
 
@@ -42,11 +42,11 @@ class School extends Model
     public static function getSchoolsById( $schools )
     {
 
-        $permissions = ___accessPermissions( $schools );
+        //$permissions = ___accessPermissions( $schools );
 
         $result      = null;
 
-        $query       = self::whereIn('id', $permissions->schools_selected)
+        $query       = self::whereIn('id', $schools)
             ->where('status', self::ALIVE)
             ->get();
 

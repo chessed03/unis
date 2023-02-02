@@ -44,7 +44,7 @@ class User extends Model
     public static function getAliveUsers( $schools, $keyWord, $paginateNumber, $orderBy )
     {
 
-        $permissions = ___accessPermissions( $schools );
+        /*$permissions = ___accessPermissions( $schools );
 
         $result      = null;
 
@@ -77,7 +77,10 @@ class User extends Model
 
         }
 
-        return $result;
+        return $result;*/
+
+        return self::all();
+
     }
 
     public static function getAliveSchools( $schools )

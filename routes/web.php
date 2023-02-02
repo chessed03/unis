@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\System\UserController;
+use App\Http\Controllers\System\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,17 @@ Route::group(['middleware' => 'auth'], function () {
             ->group(function () {
 
                 Route::get('index', 'index')->name('index');
+
+            });
+
+        #Routes users
+        Route::controller(PostController::class)
+            ->prefix('posts')
+            ->as('post-')
+            ->group(function () {
+
+                Route::get('index', 'index')->name('index');
+                Route::post('upload-image', 'uploadImage')->name('upload-image');
 
             });
 
