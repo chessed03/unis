@@ -33,11 +33,9 @@ class Users extends Component
 
         $orderBy        = intval($this->orderBy);
 
-        $schools        = json_decode(auth()->user()->schools);
+        $list_users     = User::getAliveUsers( $keyWord, $paginateNumber, $orderBy );
 
-        $list_users     = User::getAliveUsers( $schools, $keyWord, $paginateNumber, $orderBy );
-
-        $list_schools   = User::getAliveSchools( $schools );
+        $list_schools   = User::getAliveSchools();
 
         $list_modules   = User::getAliveSubmodules();
 

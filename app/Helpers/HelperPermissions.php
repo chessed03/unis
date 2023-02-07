@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use App\Models\System\Permission;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Http;
-
 
 function ___routeArmored()
 {
@@ -16,7 +16,33 @@ function ___routeArmored()
     return $result;
 
 }
-function ___accessPermissions( $schools_access )
+
+function ___getPermissionUser()
+{
+
+    $result     = null;
+
+    $id         = Auth::id();
+
+    $permission = Permission::getPermissions( $id );
+
+    $module     = session()->get('access_permissions')[array_search(\Request::route()->getName(), array_column(session()->get('access_permissions'), 'module_route'))];
+
+    $access     = $permission[array_search($module->module_id, array_column($permission, 'module_id'))];
+
+    if ( $access ) {
+
+        $result = (object)[
+            'read'  => $access['read'],
+            'write' => $access['write']
+        ];
+
+    }
+
+    return $result;
+}
+
+/*function ___accessPermissions( $schools_access )
 {
     $route               = \Request::route()->getName();
 
@@ -67,4 +93,4 @@ function ___accessPermissions( $schools_access )
     ];
 
     return $result;
-}
+}*/

@@ -35,9 +35,11 @@ class Posts extends Component
 
         $orderBy        = intval($this->orderBy);
 
-        $items_schools  = Post::getAliveSchools();
+        $items_schools  = ___getSchoolsUser()->items_school;
 
-        $rows           = Post::getAlivePosts( $keyWord, $paginateNumber, $orderBy );
+        $shools_id      = ___getSchoolsUser()->schools_id;
+
+        $rows           = Post::getAlivePosts( $keyWord, $paginateNumber, $orderBy, $shools_id );
 
         if ( $paginateNumber > count($rows) ) {
 

@@ -12,10 +12,12 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        # Descomentar cuando se implementen permisos
-        /*$this->middleware(function ($request, $next) {
 
-            if( !in_array( ___routeArmored()->route_name, ___routeArmored()->routes_access ) ) {
+        $this->middleware(function ($request, $next) {
+
+            $access_route = ___routeArmored();
+
+            if( !in_array( $access_route->route_name, $access_route->routes_access ) ) {
 
                 return redirect()->route('403');
 
@@ -23,7 +25,7 @@ class UserController extends Controller
 
             return $next($request);
 
-        });*/
+        });
     }
 
     public function index( Request $request )

@@ -18,10 +18,8 @@ class School extends Model
     const ALIVE      = 1;
 
 
-    public static function getAliveSchools( $schools )
+    public static function getAliveSchoolsByArrayId( $schools )
     {
-
-        //$permissions = ___accessPermissions( $schools );
 
         $result      = null;
 
@@ -38,26 +36,4 @@ class School extends Model
         return $result;
 
     }
-
-    public static function getSchoolsById( $schools )
-    {
-
-        //$permissions = ___accessPermissions( $schools );
-
-        $result      = null;
-
-        $query       = self::whereIn('id', $schools)
-            ->where('status', self::ALIVE)
-            ->get();
-
-        if ( $query ) {
-
-            $result = $query;
-
-        }
-
-        return $result;
-
-    }
-
 }

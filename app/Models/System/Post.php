@@ -16,49 +16,65 @@ class Post extends Model
         'schools' => 'json'
     ];
 
-    const TABLE      = "posts";
+    const TABLE    = "posts";
 
     const DELETED  = 0;
 
-    const ALIVE     = 1;
+    const ALIVE    = 1;
 
-    public static function getAlivePosts( $keyWord, $paginateNumber, $orderBy )
+    public static function getAlivePosts( $keyWord, $paginateNumber, $orderBy, $schools )
     {
-        $resultado = null;
+        $result = null;
 
-        $consulta  = DB::table(self::TABLE);
+        $query  = DB::table(self::TABLE);
 
-        $consulta->whereRaw('title LIKE "' . $keyWord . '"');
+        $query->where(function ($q) use ($schools) {
+
+            foreach ($schools as $school_id) {
+
+                $q->orWhereJsonContains('schools', $school_id);
+
+            }
+
+        });
+
+        $query->whereRaw('status = "' . self::ALIVE . '"');
+
+        $query->whereRaw('title LIKE "' . $keyWord . '"');
 
         if ( $orderBy == 1 ) {
 
-            $consulta->orderByRaw('title ASC');
+            $query->orderByRaw('title ASC');
 
         }
 
         if ( $orderBy == 2 ) {
 
-            $consulta->orderByRaw('title DESC');
+            $query->orderByRaw('title DESC');
 
         }
 
         if ( $orderBy == 3 ) {
 
-            $consulta->orderByRaw('created_at DESC');
+            $query->orderByRaw('created_at DESC');
 
         }
 
         if ( $orderBy == 4 ) {
 
-            $consulta->orderByRaw('created_at ASC');
+            $query->orderByRaw('created_at ASC');
 
         }
 
-        $consulta->whereRaw('status = "' . self::ALIVE . '"');
+        $collection = $query->paginate($paginateNumber);
 
-        $resultado = $consulta->paginate($paginateNumber);
+        if ( $collection ) {
 
-        return $resultado;
+            $result = $collection;
+
+        }
+
+        return $result;
     }
 
     public static function getAliveSchools()

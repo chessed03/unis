@@ -24,16 +24,18 @@ class User extends Model
 
     const DISCONTINUED = 2;
 
-    public static function getSchoolsByUserId( $id )
+    public static function getUserById( $id )
     {
 
         $result = null;
 
-        $query  = self::find( $id );
+        $query  = self::where('id', auth()->user()->id)
+            ->where('status', self::ALIVE)
+            ->first();
 
         if ( $query ) {
 
-            $result = School::getSchoolsById( $query->schools );;
+            $result = $query;
 
         }
 
@@ -41,56 +43,42 @@ class User extends Model
 
     }
 
-    public static function getAliveUsers( $schools, $keyWord, $paginateNumber, $orderBy )
+    public static function getAliveUsers( $keyWord, $paginateNumber, $orderBy )
     {
-
-        /*$permissions = ___accessPermissions( $schools );
-
-        $result      = null;
-
-        $contains    = [];
-
-        foreach ( $permissions->permissions as $permission ) {
-
-            $query  = self::whereJsonContains('schools', "$permission->school_id")
-                ->where('status', self::ALIVE)
-                ->get();
-
-            foreach ( $query as $c => $content ) {
-
-                $contains[$content->id] = (object)[
-                    'id'      => $content->id,
-                    'figure'  => $content->figure_id,
-                    'name'    => $content->name,
-                    'schools' => $content->schools,
-                    'email'   => $content->email,
-                    'write'   => $permission->write
-                ];
-
-            }
-
-        }
-
-        if ( $contains ) {
-
-            $result = $contains;
-
-        }
-
-        return $result;*/
 
         return self::all();
 
     }
 
-    public static function getAliveSchools( $schools )
+    public static function getAliveSchools()
     {
-        return School::getAliveSchools( $schools );
+
+        $shoolsPermissions = ___getPermissionUser()->write;
+
+        return School::getAliveSchoolsByArrayId( $shoolsPermissions );
+
     }
 
     public static function getAliveSubmodules()
     {
+
         return Module::getAliveSubmodules();
+
+    }
+
+    public static function getSchoolsByUserId()
+    {
+        $shoolsWrite       = ___getPermissionUser()->write;
+
+        $shoolsUser        = self::getUserById( auth()->user()->id )->schools;
+
+        $schools           = array_merge($shoolsWrite, $shoolsUser);
+
+        $distinct          = array_unique( $schools );
+
+        $shoolsPermissions = array_diff_key( $schools, $distinct );
+
+        return School::getAliveSchoolsByArrayId( $shoolsPermissions );
     }
 
     public static function createItem( $data )

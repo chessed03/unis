@@ -20,11 +20,12 @@ class Permission extends Model
     const REMOVED    = 0;
 
     const ALIVE      = 1;
-    public static function getPermissions($user_id)
+    public static function getPermissions( $user_id )
     {
         $permissions = null;
 
         $query = self::where('user_id', $user_id)
+            ->where('status', self::ALIVE)
             ->first();
 
         if ( $query ) {

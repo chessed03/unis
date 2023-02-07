@@ -42,19 +42,19 @@
 
                 <?php
 
-                $user_id            = auth()->user()->id;
-                $route_current      = Route::getCurrentRoute()->getName();
-                $parse_route_actual = explode('_', $route_current);
-                $route_current      = $parse_route_actual[0];
-                $modules_model      = new Module();
-                $modules            = $modules_model->getModulesForMenu($user_id);
+                    $user_id            = auth()->user()->id;
+                    $route_current      = Route::getCurrentRoute()->getName();
+                    $parse_route_actual = explode('_', $route_current);
+                    $route_current      = $parse_route_actual[0];
+                    $modules_model      = new Module();
+                    $modules            = $modules_model->getModulesForMenu($user_id);
 
-                foreach ($modules['modules'] as $key => $val) {
-                    $modules['modules'][$key]['active'] = "nav-link";
-                    $modules['modules'][$key]['style'] = "display: none;";
-                    $modules['modules'][$key]['menu_open'] = "nav-item has-treeview";
+                    foreach ($modules['modules'] as $key => $val) {
 
-                    if ( $val->id ?? null ) { #--quitar ir cuando se implemente permisos--
+                        $modules['modules'][$key]['active'] = "nav-link";
+                        $modules['modules'][$key]['style'] = "display: none;";
+                        $modules['modules'][$key]['menu_open'] = "nav-item has-treeview";
+
                         foreach ($modules['submodules'][$val->id] as $k => $v) {
 
                             if ($v['route'] == $route_current) {
@@ -66,49 +66,46 @@
                             }
 
                         }
-                    }
 
-                }
+                    }
                 ?>
 
                 @foreach ($modules['modules'] as $val)
 
-                    @if( $val['icon'] ?? null) {{--quitar ir cuando se implemente permisos--}}
-                        <li class="{{ $val['menu_open'] }}">
+                    <li class="{{ $val['menu_open'] }}">
 
-                            <a href="#" class="{{ $val['active'] }}">
+                        <a href="#" class="{{ $val['active'] }}">
 
-                                <i class="nav-icon {{ $val['icon'] }}"></i>
-                                <p> {{ $val['name'] }} <i class="right fa fa-angle-left"></i></p>
+                            <i class="nav-icon {{ $val['icon'] }}"></i>
+                            <p> {{ $val['name'] }} <i class="right fa fa-angle-left"></i></p>
 
-                            </a>
+                        </a>
 
-                            <ul class="nav nav-treeview" style="{{ $val['style'] }}">
+                        <ul class="nav nav-treeview" style="{{ $val['style'] }}">
 
 
-                                @foreach($modules['submodules'][$val->id] as $v)
+                            @foreach($modules['submodules'][$val->id] as $v)
 
-                                    <li class="nav-item">
+                                <li class="nav-item">
 
-                                        <a href="{{ ( $v['route'] == '403' ) ? '#' : route($v['route']) }}" onclick="{{ ( $v['route'] == "403" ) ? 'warningModal()' : '' }}"
-                                           class="{{ ( $v['route'] == '403' ) ? 'nav-link' : ( ( $v['route'] == $route_current ) ? 'nav-link active' : 'nav-link' ) }}">
+                                    <a href="{{ ( $v['route'] == '403' ) ? '#' : route($v['route']) }}" onclick="{{ ( $v['route'] == "403" ) ? 'warningModal()' : '' }}"
+                                       class="{{ ( $v['route'] == '403' ) ? 'nav-link' : ( ( $v['route'] == $route_current ) ? 'nav-link active' : 'nav-link' ) }}">
 
-                                            <i class="{{ ($v['route'] == $route_current) ? 'bx-fw bx bxs-toggle-right' : $v['icon'] . ' text-secondary' }} nav-icon"></i>
-                                            <p class="{{ ( $v['route'] == '403' ) ? 'text-secondary' : ''  }}">{{ $v['name'] }}</p>
+                                        <i class="{{ ($v['route'] == $route_current) ? 'bx-fw bx bxs-toggle-right' : $v['icon'] . ' text-secondary' }} nav-icon"></i>
+                                        <p class="{{ ( $v['route'] == '403' ) ? 'text-secondary' : ''  }}">{{ $v['name'] }}</p>
 
-                                        </a>
+                                    </a>
 
-                                    </li>
+                                </li>
 
-                                @endforeach
+                            @endforeach
 
-                            </ul>
+                        </ul>
 
-                        </li>
-                    @endif
-
+                    </li>
 
                 @endforeach
+
             </ul>
 
         </nav>

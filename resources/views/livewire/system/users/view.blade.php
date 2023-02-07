@@ -126,7 +126,7 @@
             let item = $(this).attr('id');
 
             let model = $(this).attr('data-model');
-            console.log(model)
+
             let data = $('#' + item).select2('val');
 
             @this.set(model, data);
@@ -155,11 +155,17 @@
 
                 for ( permission of permissions  ) {
 
-                    for ( access of permission.permissions ) {
+                    for ( checkRead of permission.read ) {
 
-                        $('#checkBox' + ( (access.read == 1) ? 'Read' : '' ) + access.school_id + permission.module_id).prop('checked', true);
+                        $('#checkBoxRead' + checkRead + permission.module_id).prop('checked', true);
 
-                        $('#checkBox' + ( (access.write == 1) ? 'Write' : '' ) + access.school_id + permission.module_id).prop('checked', true);
+                    }
+
+                    for ( checkWrite of permission.write ) {
+
+                        $('#checkBoxWrite' + checkWrite + permission.module_id).prop('checked', true);
+
+                        $('#checkBoxRead' + checkWrite + permission.module_id).prop('checked', true);
 
                     }
 
@@ -169,9 +175,9 @@
 
         }
 
-        const checkPermission = (school_id, module_id, read, write) => {
+        const checkPermission = ( school_id, module_id, read, write ) => {
 
-            if (write == 1) {
+            if ( write == 1 ) {
 
                 if ($('#checkBoxWrite' + school_id + module_id).is(':checked')) {
 
@@ -205,10 +211,12 @@
 
                 let deleted = options[0] + '-' + options[1] + '-' + options[2] + '-' + 0;
 
-                if (options[3] == 1) {
+                if ( options[3] == 1 ) {
 
                     permissions_checked = jQuery.grep(permissions_checked, function (value) {
+
                         return value != deleted;
+
                     });
 
                 }
@@ -225,25 +233,31 @@
 
                 str_array_permission_selected.push({
                     'module_id': values[1],
-                    'permissions': [{
-                        'read': values[2],
-                        'write': values[3],
-                        'school_id': values[0],
-                    }]
+                    'read'     : ( parseInt(values[3]) == 1 ) ? [] : [ values[0] ],
+                    'write'    : ( parseInt(values[3]) == 1 ) ? [ values[0] ] : [],
                 });
 
             }
 
+            let result_permissions = str_array_permission_selected.reduce((str_group, permissions) => {
 
-            let result_permissions = str_array_permission_selected.reduce((str_group, permission) => {
+                let item = str_group.find(item => item.module_id == permissions.module_id)
 
-                let item = str_group.find(item => item.module_id == permission.module_id)
-
-                if (item == undefined) str_group = [...str_group, {...permission}]
+                if (item == undefined) str_group = [...str_group, {...permissions}]
 
                 else {
 
-                    item.permissions.push(permission.permissions[0]);
+                    if ( permissions.read[0] ) {
+
+                        item.read.push(permissions.read[0]);
+
+                    }
+
+                    if ( permissions.write[0] ) {
+
+                        item.write.push(permissions.write[0]);
+
+                    }
 
                 }
 
@@ -256,6 +270,7 @@
             @this.set('permissions', result_permissions);
 
         }
+
 
         Livewire.on('statusChangePassword', statusChangePassword => {
 
