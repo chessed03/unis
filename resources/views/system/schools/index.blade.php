@@ -1,5 +1,4 @@
 @extends('template.app')
-
 @section('content')
 
     <div class="content-header">
@@ -31,7 +30,7 @@
 
                 <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12">
 
-                    @livewire('system.posts.posts')
+                    @livewire('system.schools.schools')
 
                 </div>
 

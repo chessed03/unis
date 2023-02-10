@@ -3,13 +3,17 @@
 use App\Models\System\Permission;
 use Illuminate\Support\Facades\Auth;
 
-use Illuminate\Support\Facades\Http;
-
 function ___routeArmored()
 {
 
+    session()->forget('route_name');
+
+    $route_name = Route::currentRouteName();
+
+    session()->put('route_name', $route_name);
+
     $result = (object)[
-        'route_name'    => \Request::route()->getName(),
+        'route_name'    => session()->get('route_name'),
         'routes_access' => session()->get('access_routes')[0]
     ];
 
@@ -22,24 +26,56 @@ function ___getPermissionUser()
 
     $result     = null;
 
+    $route      = explode('-', session()->get('route_name'));
+
+    $route_name = session()->get('route_name');
+
+    if ( $route[1] != 'index' ) {
+
+        $route_name = $route[0] . '-' . 'index';
+
+    }
+
     $id         = Auth::id();
 
     $permission = Permission::getPermissions( $id );
 
-    $module     = session()->get('access_permissions')[array_search(\Request::route()->getName(), array_column(session()->get('access_permissions'), 'module_route'))];
+    $module     = session()->get('access_permissions')[ array_search( $route_name, array_column(session()->get('access_permissions'), 'module_route') ) ];
 
-    $access     = $permission[array_search($module->module_id, array_column($permission, 'module_id'))];
+    $access     = $permission[ array_search( $module->module_id, array_column($permission, 'module_id') ) ];
 
     if ( $access ) {
 
         $result = (object)[
-            'read'  => $access['read'],
-            'write' => $access['write']
+            'read'    => $access['read'],
+            'write'   => $access['write'],
+            'schools' => array_merge( $access['read'], $access['write'] )
         ];
 
     }
 
     return $result;
+}
+
+function ___getAccessButton( $schools )
+{
+
+    $permissions = ___getPermissionUser()->write;
+
+    $result = false;
+
+    foreach ( $permissions as $p => $permission ) {
+
+        if ( in_array( $permission, $schools ) ) {
+
+            $result = true;
+
+        }
+
+    }
+
+    return $result;
+
 }
 
 /*function ___accessPermissions( $schools_access )

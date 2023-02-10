@@ -95,6 +95,32 @@
 
         @yield('scripts')
 
+        @if ( $message = Session::get('success') )
+
+            <script>
+
+                setTimeout(() => {
+
+                    alertMessage( '{{ $message }}', 'success' );
+
+                }, "500");
+
+            </script>
+
+        @endif
+
+        @if ($message = Session::get('error'))
+            <script>
+
+                setTimeout(() => {
+
+                    alertMessage( '{{ $message }}', 'error' );
+
+                }, "500");
+
+            </script>
+        @endif
+
         @livewireScripts
 
         @stack('js')

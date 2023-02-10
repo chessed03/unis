@@ -4,6 +4,7 @@ namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Route;
 
 class Module extends Model
 {
@@ -37,6 +38,7 @@ class Module extends Model
                 $access_permissions[$k] = (object)[
                     'module_route' => $query->route,
                     'module_id'    => intval($permision['module_id']),
+                    'access'       => count($permision['write']) > 0
                 ];
 
             }
@@ -75,11 +77,43 @@ class Module extends Model
 
         if ( !session()->get('access_routes') ) {
 
+            $routeCollection = Route::getRoutes();
+
             $item_routes = [];
 
             foreach ( $menu_modules as $a => $access) {
 
-                array_push($item_routes, $access['route']);
+                $sessionAccess = session()->get('access_permissions');
+
+                foreach ( $sessionAccess as $s => $routeAccess) {
+
+                    if ( $access['route'] == $routeAccess->module_route ) {
+
+                        if ( $routeAccess->access ) {
+
+                            $keyAccess = explode('-', $access['route']);
+
+                            foreach ($routeCollection as $route) {
+
+                                $keyRoute = explode('-', $route->getName());
+
+                                if ( $keyRoute[0] == $keyAccess[0] ) {
+
+                                    array_push($item_routes, $route->getName());
+
+                                }
+
+                            }
+
+                        } else {
+
+                            array_push( $item_routes, $access['route'] );
+
+                        }
+
+                    }
+
+                }
 
             }
 

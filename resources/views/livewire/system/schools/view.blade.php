@@ -6,7 +6,7 @@
 
             <div class="col-6">
 
-                <h6>Lista de posts</h6>
+                <h6>Lista de universidades</h6>
 
             </div>
 
@@ -14,16 +14,16 @@
 
                 @if( count($list_schools) > 0 )
 
-                    <a href="{{ route('post-create') }}">
+                    <a href="{{ route('school-create') }}">
                         <button class="btn btn-success elevation-2">
-                            <i class="bx bx-fw bxs-plus-circle"></i> Nuevo post
+                            <i class="bx bx-fw bxs-plus-circle"></i> Nueva universidad
                         </button>
                     </a>
 
                 @else
 
                     <button type="button" class="btn btn-secondary" disabled>
-                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo post
+                        <i class="bx bx-fw bxs-plus-circle"></i> Nueva universidad
                     </button>
 
                 @endif
@@ -77,57 +77,57 @@
                         </thead>
                         <tbody>
 
-                            @foreach( $rows as $key => $row )
-                                <tr>
-                                    <td>{{ $row->title }}</td>
-                                    <td>{{ $row->subtitle }}</td>
-                                    <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
+                        @foreach( $rows as $key => $row )
+                            <tr>
+                                <td>{{ $row->name }}</td>
+                                <td>{{ $row->address }}</td>
+                                <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
-                                        @if( ___getAccessButton( json_decode($row->schools) ) )
+                                    @if( ___getAccessButton( [ $row->id ] ) )
 
-                                            <div class="btn-group dropdown mb-2">
+                                        <div class="btn-group dropdown mb-2">
 
-                                                <button type="button" class="btn btn-primary elevation-2 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button type="button" class="btn btn-primary elevation-2 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                                    Opciones
+                                                Opciones
 
-                                                </button>
+                                            </button>
 
-                                                <div class="dropdown-menu">
+                                            <div class="dropdown-menu">
 
-                                                    <a class="dropdown-item text-primary" href="{{ route('post-update', [ 'id' => $row->id ]) }}">
+                                                <a class="dropdown-item text-primary" href="{{ route('school-update', [ 'id' => $row->id ]) }}">
 
-                                                        <i class="bx bx-fw bxs-pencil"></i> Editar
+                                                    <i class="bx bx-fw bxs-pencil"></i> Editar
 
-                                                    </a>
+                                                </a>
 
-                                                    <a class="dropdown-item text-danger" href="#" onclick="destroy('{{ $row->id }}')">
+                                                <a class="dropdown-item text-danger" href="#" onclick="destroy('{{ $row->id }}')">
 
-                                                        <i class="bx bx-fw bxs-trash-alt"></i> Eliminar
+                                                    <i class="bx bx-fw bxs-trash-alt"></i> Eliminar
 
-                                                    </a>
-
-                                                </div>
+                                                </a>
 
                                             </div>
 
-                                        @else
+                                        </div>
 
-                                            <div class="btn-group dropdown mb-2">
+                                    @else
 
-                                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="btn-group dropdown mb-2">
 
-                                                    Opciones
+                                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                                </button>
+                                                Opciones
 
-                                            </div>
+                                            </button>
 
-                                        @endif
+                                        </div>
 
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    @endif
+
+                                </td>
+                            </tr>
+                        @endforeach
 
                         </tbody>
                     </table>

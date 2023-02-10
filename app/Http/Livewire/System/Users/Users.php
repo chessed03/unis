@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\System;
+namespace App\Http\Livewire\System\Users;
 
 use App\Models\System\Permission;
 use App\Models\System\User;

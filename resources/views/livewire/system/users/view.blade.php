@@ -14,7 +14,7 @@
 
                 @if( count($list_schools) > 0 )
 
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal"><i class="bx bx-fw bxs-plus-circle bx-xs"></i> Nuevo usuario </button>
+                    <button type="button" class="btn btn-success elevation-2" data-toggle="modal" data-target="#createModal"><i class="bx bx-fw bxs-plus-circle"></i> Nuevo usuario </button>
 
                 @endif
 
@@ -75,7 +75,7 @@
 
 
                                             <div wire:ignore class="btn-group dropdown mb-2">
-                                                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <button type="button" class="btn btn-primary elevation-2 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Opciones
                                                 </button>
                                                 <div class="dropdown-menu">

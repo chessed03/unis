@@ -22,11 +22,13 @@ class Post extends Model
 
     const ALIVE    = 1;
 
-    public static function getAlivePosts( $keyWord, $paginateNumber, $orderBy, $schools )
+    public static function getAlivePostsForView( $keyWord, $paginateNumber, $orderBy )
     {
+        $schools = ___getPermissionUser()->schools;
+
         $result = null;
 
-        $query  = DB::table(self::TABLE);
+        $query  = DB::table( self::TABLE );
 
         $query->where(function ($q) use ($schools) {
 
@@ -79,58 +81,50 @@ class Post extends Model
 
     public static function getAliveSchools()
     {
-        $resultado = null;
+        $shoolsPermissions = ___getPermissionUser()->write;
 
-        $consulta  = School::where('status', self::ALIVE)->get();
-
-        if ( $consulta ) {
-
-            $resultado = $consulta;
-
-        }
-
-        return $resultado;
+        return School::getAliveSchoolsByArrayId( $shoolsPermissions );
     }
 
     public static function validatePostTitle( $titulo, $id )
     {
 
-        $resultado = null;
+        $result = null;
 
-        $consulta  = DB::table(self::TABLE);
+        $query  = DB::table(self::TABLE);
 
         if ( $id ) {
 
-            $consulta->where('id', '!=', $id);
+            $query->where('id', '!=', $id);
 
         }
 
-        $consulta->where('title', $titulo);
+        $query->where('title', $titulo);
 
-        $consulta->where('status', self::ALIVE);
+        $query->where('status', self::ALIVE);
 
-        $registros = $consulta->count();
+        $rows = $query->count();
 
-        if ( $registros ) {
+        if ( $rows ) {
 
-            $resultado = $registros;
+            $result = $rows;
 
         }
 
-        return $resultado;
+        return $result;
 
     }
 
-    public static function createItem( $datos )
+    public static function createItem( $data )
     {
 
-        $item                = new self;
-        $item->title        = $datos->title;
-        $item->slug          = $datos->slug;
-        $item->subtitle     = $datos->subtitle;
-        $item->schools = $datos->schools;
-        $item->content     = $datos->content;
-        $item->created_by    = auth()->user()->id."-".auth()->user()->name;
+        $item             = new self();
+        $item->title      = $data->title;
+        $item->slug       = $data->slug;
+        $item->subtitle   = $data->subtitle;
+        $item->schools    = $data->schools;
+        $item->content    = $data->content;
+        $item->created_by = auth()->user()->id."-".auth()->user()->name;
 
 
         if( $item->save() ) {
@@ -145,17 +139,15 @@ class Post extends Model
         return false;
     }
 
-    public static function updateItem( $datos )
+    public static function updateItem( $data )
     {
 
-        $item                = self::where('id', $datos->id)->first();
-        $item->title        = $datos->title;
-        $item->slug          = $datos->slug;
-        $item->subtitle     = $datos->subtitle;
-        $item->schools = $datos->schools;
-        $item->content     = $datos->content;
-        $item->created_by    = auth()->user()->id."-".auth()->user()->name;
-
+        $item             = self::where('id', $data->id)->first();
+        $item->title      = $data->title;
+        $item->slug       = $data->slug;
+        $item->subtitle   = $data->subtitle;
+        $item->schools    = $data->schools;
+        $item->content    = $data->content;
 
         if( $item->update() ) {
 

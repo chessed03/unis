@@ -57,7 +57,7 @@
 
                         foreach ($modules['submodules'][$val->id] as $k => $v) {
 
-                            if ($v['route'] == $route_current) {
+                            if ( $v['route'] == $route_current ) {
 
                                 $modules['modules'][$key]['active'] = ( $v['route'] == '403' ) ? "nav-link" : "nav-link active";
                                 $modules['modules'][$key]['style'] = ( $v['route'] == '403' ) ? "display: none;" : "display: block;";
