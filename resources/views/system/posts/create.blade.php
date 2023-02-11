@@ -59,32 +59,32 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="title">Titulo:</label>
-                                        <input type="text" name="title" id="title" class="form-control form-group" value="{{ old('title') }}" oninput="generateSlug()">
-                                        @error('title') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="title" id="title" class="form-control form-group @error('title') is-invalid @enderror" value="{{ old('title') }}" oninput="generateSlug()">
+                                        @error('title')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="slug">Slug:</label>
-                                        <input type="text" name="slug" id="slug" class="form-control form-group slug" value="{{ old('slug') }}">
-                                        @error('slug') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="slug" id="slug" class="form-control form-group slug @error('slug') is-invalid @enderror" value="{{ old('slug') }}">
+                                        @error('slug')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="subtitle">Subtitulo:</label>
-                                        <input type="text" name="subtitle" id="subtitle" class="form-control form-group" value="{{ old('subtitle') }}">
-                                        @error('subtitle') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="subtitle" id="subtitle" class="form-control form-group @error('subtitle') is-invalid @enderror" value="{{ old('subtitle') }}">
+                                        @error('subtitle')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="schools">Universidades:</label>
-                                        <div class="select2-success form-group">
+                                        <div class="select2-success form-group @error('schools') is-invalid @enderror">
                                             <select name="schools[]" id="schools" class="select2" data-dropdown-css-class="select2-success" multiple="multiple">
                                                 @foreach( $list_schools as $item )
                                                     <option {{ ( in_array( $item->id, old('schools') ?? [] ) ) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        @error('schools') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        @error('schools')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -93,7 +93,7 @@
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                        @error('content') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        @error('content')<span class="error text-danger small"><strong>{{ $message }}</strong></span> @enderror
                                     </div>
 
                                     <div class="col-12 text-right mt-4">

@@ -14,7 +14,9 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <link href="{{asset("template/admin/dist/css/adminlte.css")}}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +78,12 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="{{ asset('template/admin/plugins/jquery/jquery.min.js') }}"></script>
+
+    <script src="{{ asset('template/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('template/admin/dist/js/adminlte.min.js') }}"></script>
+
 </body>
 </html>

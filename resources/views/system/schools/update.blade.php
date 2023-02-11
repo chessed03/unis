@@ -61,38 +61,38 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="name">Nombre:</label>
-                                        <input type="text" name="name" id="name" class="form-control form-group" value="{{ $item->name }}">
-                                        @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="name" id="name" class="form-control form-group @error('name') is-invalid @enderror" value="{{ $item->name }}">
+                                        @error('name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="address">Dirección:</label>
-                                        <input type="text" name="address" id="address" class="form-control form-group address" value="{{ $item->address }}">
-                                        @error('address') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="address" id="address" class="form-control form-group @error('address') is-invalid @enderror" value="{{ $item->address }}">
+                                        @error('address')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="contact">Contacto:</label>
-                                        <input type="text" name="contact" id="contact" class="form-control form-group" value="{{ $item->contact }}">
-                                        @error('contact') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="contact" id="contact" class="form-control form-group @error('contact') is-invalid @enderror" value="{{ $item->contact }}">
+                                        @error('contact')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="phone">Telefono:</label>
-                                        <input type="text" name="phone" id="phone" class="form-control form-group" value="{{ $item->phone }}">
-                                        @error('phone') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="phone" id="phone" class="form-control form-group @error('phone') is-invalid @enderror" value="{{ $item->phone }}">
+                                        @error('phone')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="email">Correo:</label>
-                                        <input type="text" name="email" id="email" class="form-control form-group" value="{{ $item->email }}">
-                                        @error('email') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="email" id="email" class="form-control form-group @error('email') is-invalid @enderror" value="{{ $item->email }}">
+                                        @error('email')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="description">Descripción:</label>
-                                        <input type="text" name="description" id="description" class="form-control form-group" value="{{ $item->description }}">
-                                        @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
+                                        <input type="text" name="description" id="description" class="form-control form-group @error('description') is-invalid @enderror" value="{{ $item->description }}">
+                                        @error('description')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-12 text-right mt-4">
