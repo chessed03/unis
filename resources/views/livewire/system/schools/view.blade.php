@@ -12,7 +12,7 @@
 
             <div class="col-6 text-right">
 
-                @if( count($list_schools) > 0 )
+                @if( ___getAccessButton( [] ) )
 
                     <a href="{{ route('school-create') }}">
                         <button class="btn btn-success elevation-2">

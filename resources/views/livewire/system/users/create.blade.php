@@ -35,18 +35,18 @@
                                             @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                            <label for="create-schools">Universidades:</label>
-                                            <div class="select2-success form-group" wire:ignore>
-                                                <select wire:model="schools" data-model="schools" id="create-schools" class="select2" data-dropdown-css-class="select2-success" multiple="multiple">
-                                                    <option value="" selected></option>
-                                                    @foreach( $list_schools as $item )
-                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            @error('schools') <span class="error text-danger">{{ $message }}</span> @enderror
-                                        </div>
+{{--                                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">--}}
+{{--                                            <label for="create-schools">Universidades:</label>--}}
+{{--                                            <div class="select2-success form-group" wire:ignore>--}}
+{{--                                                <select wire:model="schools" data-model="schools" id="create-schools" class="select2" data-dropdown-css-class="select2-success" multiple="multiple">--}}
+{{--                                                    <option value="" selected></option>--}}
+{{--                                                    @foreach( $list_schools as $item )--}}
+{{--                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
+{{--                                            </div>--}}
+{{--                                            @error('schools') <span class="error text-danger">{{ $message }}</span> @enderror--}}
+{{--                                        </div>--}}
 
                                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                             <label for="email">Correo electronico: *</label>

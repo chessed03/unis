@@ -95,4 +95,59 @@ class Permission extends Model
         return $result;
     }
 
+    public static function addNewSchool( $id )
+    {
+
+        $user_id         = auth()->user()->id;
+
+        $permissions     = self::find( $user_id );
+
+        $new_permissions = [];
+
+        foreach ( $permissions->permissions as $p => $permission ) {
+
+            array_push($permission['write'], strval($id));
+
+            $new_permissions[$p] = [
+                'read'      => array_unique( $permission['read'] ),
+                'write'     => array_unique( $permission['write'] ),
+                'module_id' => $permission['module_id']
+            ];
+
+        }
+
+        $permissions->permissions = $new_permissions;
+
+        $permissions->update();
+
+        if ( $user_id != 1 ) {
+
+            $user_root            = 1;
+
+            $permissions_root     = self::find( $user_root );
+
+            $new_permissions_root = [];
+
+            foreach ( $permissions_root->permissions as $r => $permission_root ) {
+
+                array_push($permission_root['write'], strval($id));
+
+                $new_permissions_root[$r] = [
+                    'read'      => array_unique( $permission_root['read'] ),
+                    'write'     => array_unique( $permission_root['write'] ),
+                    'module_id' => $permission_root['module_id']
+                ];
+
+            }
+
+            $permissions_root->permissions = $new_permissions_root;
+
+            $permissions_root->update();
+
+        }
+
+        return true;
+
+    }
+
 }

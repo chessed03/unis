@@ -64,13 +64,21 @@ function ___getAccessButton( $schools )
 
     $result = false;
 
-    foreach ( $permissions as $p => $permission ) {
+    if ( !empty( $schools ) ) {
 
-        if ( in_array( $permission, $schools ) ) {
+        foreach ( $permissions as $p => $permission ) {
 
-            $result = true;
+            if ( in_array( $permission, $schools ) ) {
+
+                $result = true;
+
+            }
 
         }
+
+    } else {
+
+        $result = count( $permissions ) > 0;
 
     }
 

@@ -20,7 +20,6 @@ class School extends Model
 
     public static function getAliveSchoolsForView( $keyWord, $paginateNumber, $orderBy )
     {
-        $schools = ___getPermissionUser()->schools;
 
         $result = null;
 
@@ -126,8 +125,9 @@ class School extends Model
         $item->description = $data->description;
         $item->created_by  = auth()->user()->id."-".auth()->user()->name;
 
-
         if( $item->save() ) {
+
+            Permission::addNewSchool( $item->id );
 
             Binnacle::binnacleRegister( 'create', self::TABLE, 'post', $item->id );
 
@@ -155,7 +155,6 @@ class School extends Model
             Binnacle::binnacleRegister( 'update', self::TABLE, 'post', $item->id );
 
             return true;
-
 
         }
 

@@ -40,8 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         });
 
-    #Routes group of configs menu
-    Route::group(['prefix' => 'configs'], function () {
+    #Routes group of configuration menu
+    Route::group(['prefix' => 'configuration'], function () {
 
         #Routes users
         Route::controller(UserController::class)

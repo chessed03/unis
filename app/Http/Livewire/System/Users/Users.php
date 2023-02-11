@@ -22,7 +22,7 @@ class Users extends Component
 
     public $updateMode         = false;
 
-    public $selected_id, $selected_schools, $name, $email, $password, $password_confirmation, $schools, $permissions, $changePassword;
+    public $selected_id, $name, $email, $password, $password_confirmation, $schools, $permissions, $changePassword;
 
     public function render()
     {
@@ -74,12 +74,10 @@ class Users extends Component
     {
 
         $this->name                  = null;
-        $this->schools               = null;
         $this->email                 = null;
         $this->password              = null;
         $this->permissions           = null;
         $this->password_confirmation = null;
-        $this->selected_schools      = null;
 
     }
 
@@ -87,14 +85,12 @@ class Users extends Component
     {
         $this->validate([
             'name'     => 'required',
-            'schools'  => 'required',
             'email'    => 'required',
             'password' => 'required|confirmed|min:8'
         ]);
 
         $data = (object)[
             'name'     => $this->name,
-            'schools'  => $this->schools,
             'email'    => $this->email,
             'password' => $this->password
         ];
@@ -111,8 +107,6 @@ class Users extends Component
         $this->selected_id      = $id;
 
         $this->name             = $name;
-
-        $this->selected_schools = User::getSchoolsByUserId( $id );
 
         $record                 = Permission::getPermissionsById( $id );
 

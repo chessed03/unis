@@ -4,6 +4,7 @@ namespace App\Models\System;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Model
@@ -46,17 +47,51 @@ class User extends Model
     public static function getAliveUsers( $keyWord, $paginateNumber, $orderBy )
     {
 
-        return self::all();
+        $result = null;
+
+        $query  = DB::table( self::TABLE );
+
+        $query->whereRaw('id != 1');
+
+        $query->whereRaw('id != ' . auth()->user()->id);
+
+        $query->whereRaw('name LIKE "' . $keyWord . '"');
+
+        if ( $orderBy == 1 ) {
+
+            $query->orderByRaw('name ASC');
+
+        }
+
+        if ( $orderBy == 2 ) {
+
+            $query->orderByRaw('name DESC');
+
+        }
+
+        if ( $orderBy == 3 ) {
+
+            $query->orderByRaw('created_at DESC');
+
+        }
+
+        if ( $orderBy == 4 ) {
+
+            $query->orderByRaw('created_at ASC');
+
+        }
+
+        $query->whereRaw('status = "' . self::ALIVE . '"');
+
+        $result = $query->paginate($paginateNumber);
+
+        return $result;
 
     }
 
     public static function getAliveSchools()
     {
-
-        $shoolsPermissions = ___getPermissionUser()->write;
-
-        return School::getAliveSchoolsByArrayId( $shoolsPermissions );
-
+        return School::getAliveSchools();
     }
 
     public static function getAliveSubmodules()
@@ -66,27 +101,11 @@ class User extends Model
 
     }
 
-    public static function getSchoolsByUserId()
-    {
-        $shoolsWrite       = ___getPermissionUser()->write;
-
-        $shoolsUser        = self::getUserById( auth()->user()->id )->schools;
-
-        $schools           = array_merge($shoolsWrite, $shoolsUser);
-
-        $distinct          = array_unique( $schools );
-
-        $shoolsPermissions = array_diff_key( $schools, $distinct );
-
-        return School::getAliveSchoolsByArrayId( $shoolsPermissions );
-    }
-
     public static function createItem( $data )
     {
 
         $item             = new self();
         $item->name       = $data->name;
-        $item->schools    = $data->schools;
         $item->email      = $data->email;
         $item->password   = Hash::make($data->password);
         $item->created_by = auth()->user()->id."-".auth()->user()->name;

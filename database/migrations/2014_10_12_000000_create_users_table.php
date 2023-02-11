@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('figure_id')->nullable();
             $table->string('user_name')->unique()->nullable();
             $table->string('name');
-            $table->json('schools')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

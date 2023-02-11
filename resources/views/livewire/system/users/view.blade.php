@@ -12,9 +12,17 @@
 
             <div class="col-6 text-right">
 
-                @if( count($list_schools) > 0 )
+                @if( ___getAccessButton([]) )
 
-                    <button type="button" class="btn btn-success elevation-2" data-toggle="modal" data-target="#createModal"><i class="bx bx-fw bxs-plus-circle"></i> Nuevo usuario </button>
+                    <button type="button" class="btn btn-success elevation-2" data-toggle="modal" data-target="#createModal">
+                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo usuario
+                    </button>
+
+                @else
+
+                    <button type="button" class="btn btn-secondary" disabled>
+                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo usuario
+                    </button>
 
                 @endif
 
@@ -73,6 +81,7 @@
                                     <td>{{ $row->email }}</td>
                                     <td wire:key="{{ $row->id }}" class="text-right">
 
+                                        @if( ___getAccessButton([]) )
 
                                             <div wire:ignore class="btn-group dropdown mb-2">
                                                 <button type="button" class="btn btn-primary elevation-2 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -94,6 +103,14 @@
 
                                                 </div>
                                             </div>
+
+                                        @else
+
+                                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                                                Opciones
+                                            </button>
+
+                                        @endif
 
 
                                     </td>

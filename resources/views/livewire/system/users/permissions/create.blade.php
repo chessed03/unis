@@ -28,13 +28,6 @@
                                         <label>Usuario: <strong>&nbsp;{{ $name }}</strong></label>
                                     </div>
 
-                                    {{--<div class="col-6 text-right">
-                                        <div class="custom-control custom-switch custom-switch-on-success ml-4">
-                                            <input type="checkbox" class="custom-control-input" id="check_box_permissions">
-                                            <label class="custom-control-label" for="check_box_permissions">Permisos</label>
-                                        </div>
-                                    </div>--}}
-
                                 </div>
 
                             </div>
@@ -53,9 +46,9 @@
 
                             <div class="row">
 
-                                @if ( $selected_schools )
+                                @if ( $list_schools )
 
-                                    @foreach( $selected_schools as $s => $school)
+                                    @foreach( $list_schools as $s => $school)
 
                                         <div wire:ignore class="col-4">
 
