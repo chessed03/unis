@@ -53,21 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
 
             });
 
-        #Routes posts
-        Route::controller(PostController::class)
-            ->prefix('posts')
-            ->as('post-')
-            ->group(function () {
-
-                Route::get('index', 'index')->name('index');
-                Route::get('create', 'create')->name('create');
-                Route::post('save-create', 'saveCreate')->name('save-create');
-                Route::get('update/{id}', 'update')->name('update');
-                Route::post('save-update', 'saveUpdate')->name('save-update');
-                Route::post('upload-image', 'uploadImage')->name('upload-image');
-
-            });
-
         #Routes schools
         Route::controller(SchoolController::class)
             ->prefix('schools')
@@ -82,6 +67,25 @@ Route::group(['middleware' => 'auth'], function () {
 
             });
 
+    });
+
+    #Routes group of publications menu
+    Route::group(['prefix' => 'publications'], function () {
+
+        #Routes posts
+        Route::controller(PostController::class)
+            ->prefix('posts')
+            ->as('post-')
+            ->group(function () {
+
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
+                Route::post('upload-image', 'uploadImage')->name('upload-image');
+
+            });
     });
 
 });

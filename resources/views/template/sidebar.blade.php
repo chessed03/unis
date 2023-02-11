@@ -15,7 +15,7 @@
             <div style="justify-content: center;">
                 <div class="text-center font-weight-normal">
 
-                    <img src="#" class="rounded-circle" style="width: 60px; height: 60px;">
+                    <img src="{{ asset("template/admin/img/perfil/default.png" )}}" class="rounded-circle" style="width: 60px; height: 60px;">
 
                     <br>
 
@@ -42,25 +42,29 @@
 
                 <?php
 
-                    $user_id            = auth()->user()->id;
-                    $route_current      = Route::getCurrentRoute()->getName();
-                    $parse_route_actual = explode('_', $route_current);
-                    $route_current      = $parse_route_actual[0];
-                    $modules_model      = new Module();
-                    $modules            = $modules_model->getModulesForMenu($user_id);
+                    $user_id             = auth()->user()->id;
+                    $route_current       = Route::getCurrentRoute()->getName();
+                    $parse_route_current = explode('_', $route_current);
+                    $route_current       = $parse_route_current[0];
+                    $modules_model       = new Module();
+                    $modules             = $modules_model->getModulesForMenu($user_id);
 
                     foreach ($modules['modules'] as $key => $val) {
 
-                        $modules['modules'][$key]['active'] = "nav-link";
-                        $modules['modules'][$key]['style'] = "display: none;";
+                        $modules['modules'][$key]['active']    = "nav-link";
+                        $modules['modules'][$key]['style']     = "display: none;";
                         $modules['modules'][$key]['menu_open'] = "nav-item has-treeview";
 
                         foreach ($modules['submodules'][$val->id] as $k => $v) {
 
-                            if ( $v['route'] == $route_current ) {
+                            $route_menu_module  = explode( '-', $v['route'] );
 
-                                $modules['modules'][$key]['active'] = ( $v['route'] == '403' ) ? "nav-link" : "nav-link active";
-                                $modules['modules'][$key]['style'] = ( $v['route'] == '403' ) ? "display: none;" : "display: block;";
+                            $route_menu_current = explode( '-', $route_current );
+
+                            if ( $route_menu_module[0] == $route_menu_current[0] ) {
+
+                                $modules['modules'][$key]['active']    = ( $v['route'] == '403' ) ? "nav-link" : "nav-link active";
+                                $modules['modules'][$key]['style']     = ( $v['route'] == '403' ) ? "display: none;" : "display: block;";
                                 $modules['modules'][$key]['menu_open'] = ( $v['route'] == '403' ) ? "nav-item has-treeview" : "nav-item has-treeview menu-open";
 
                             }
@@ -77,21 +81,20 @@
                         <a href="#" class="{{ $val['active'] }}">
 
                             <i class="nav-icon {{ $val['icon'] }}"></i>
-                            <p> {{ $val['name'] }} <i class="right fa fa-angle-left"></i></p>
+                            <p> {{ $val['name'] }} <i class="right bx bxs-chevron-left"></i></p>
 
                         </a>
 
                         <ul class="nav nav-treeview" style="{{ $val['style'] }}">
-
 
                             @foreach($modules['submodules'][$val->id] as $v)
 
                                 <li class="nav-item">
 
                                     <a href="{{ ( $v['route'] == '403' ) ? '#' : route($v['route']) }}" onclick="{{ ( $v['route'] == "403" ) ? 'warningModal()' : '' }}"
-                                       class="{{ ( $v['route'] == '403' ) ? 'nav-link' : ( ( $v['route'] == $route_current ) ? 'nav-link active' : 'nav-link' ) }}">
+                                       class="{{ ( $v['route'] == '403' ) ? 'nav-link' : ( ( explode( '-', $v['route'] )[0] == explode( '-', $route_current )[0] ) ? 'nav-link active' : 'nav-link' ) }}">
 
-                                        <i class="{{ ($v['route'] == $route_current) ? 'bx-fw bx bxs-toggle-right' : $v['icon'] . ' text-secondary' }} nav-icon"></i>
+                                        <i class="{{ ( explode( '-', $v['route'] )[0] == explode( '-', $route_current )[0] ) ? 'bx-fw bx bxs-toggle-right' : $v['icon'] . ' text-secondary' }} nav-icon ml-3"></i>
                                         <p class="{{ ( $v['route'] == '403' ) ? 'text-secondary' : ''  }}">{{ $v['name'] }}</p>
 
                                     </a>

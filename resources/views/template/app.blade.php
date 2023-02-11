@@ -19,11 +19,11 @@
 
         <div class="wrapper">
 
-{{--            <div class="preloader flex-column justify-content-center align-items-center">--}}
+            <div class="preloader flex-column justify-content-center align-items-center">
 
-{{--                <img class="animation__shake" src="{{ asset("template/admin/img/images/AdminLTELogo.png") }}" alt="AdminLTELogo" height="120" width="120">--}}
+                <img class="animation__shake" src="{{ asset("template/admin/img/images/AdminLTELogo.png") }}" alt="AdminLTELogo" height="120" width="120">
 
-{{--            </div>--}}
+            </div>
 
             <nav class="main-header navbar navbar-expand sidebar-dark-success text-sm">
 

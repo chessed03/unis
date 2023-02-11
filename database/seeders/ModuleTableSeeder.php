@@ -49,7 +49,7 @@ class ModuleTableSeeder extends Seeder
         DB::table('modules')->insert([
             'module_id'  => '',
             'position'   => '4',
-            'name'       => 'Publicaciones',
+            'name'       => 'Publicación',
             'route'      => '#',
             'icon'       => 'bx bx-fw bxl-digitalocean',
             'level'      => '0',
