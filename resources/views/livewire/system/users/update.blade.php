@@ -37,19 +37,6 @@
                                             @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                                         </div>
 
-{{--                                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">--}}
-{{--                                            <label for="update-schools">Universidades:</label>--}}
-{{--                                            <div class="select2-success form-group" wire:ignore>--}}
-{{--                                                <select wire:model="schools" data-model="schools" id="update-schools" class="select2" data-dropdown-css-class="select2-success" multiple="multiple">--}}
-{{--                                                    <option value="" selected></option>--}}
-{{--                                                    @foreach( $list_schools as $item )--}}
-{{--                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            </div>--}}
-{{--                                            @error('schools') <span class="error text-danger">{{ $message }}</span> @enderror--}}
-{{--                                        </div>--}}
-
                                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                             <label for="email">Correo electronico: *</label>
                                             <input wire:model="email" type="text" class="form-control form-group" autocomplete="off">
@@ -99,8 +86,8 @@
             </div>
 
             <div class="modal-footer justify-content-between">
-                <button type="button" wire:click.prevent="cancel()" class="btn btn-danger" data-dismiss="modal"><i class='bx-fw bx bx-x-circle'></i> Cerrar</button>
-                <button type="button" wire:click.prevent="update()" class="btn btn-success"><i class='bx-fw bx bx-save'></i> Guardar</button>
+                <button type="button" wire:click.prevent="cancel()" class="btn btn-danger elevation-2" data-dismiss="modal"><i class='bx-fw bx bx-x-circle'></i> Cerrar</button>
+                <button type="button" wire:click.prevent="update()" class="btn btn-success elevation-2"><i class='bx-fw bx bx-save'></i> Guardar</button>
             </div>
 
         </div>

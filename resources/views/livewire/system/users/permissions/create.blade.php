@@ -138,8 +138,8 @@
             </div>
 
             <div class="modal-footer justify-content-between">
-                <button type="button" wire:click.prevent="cancel()" class="btn btn-danger" data-dismiss="modal"><i class='bx-fw bx bx-x-circle'></i> Cerrar</button>
-                <button type="button" wire:click.prevent="storePermissions()" class="btn btn-success"><i class='bx-fw bx bx-save'></i> Guardar</button>
+                <button type="button" wire:click.prevent="cancel()" class="btn btn-danger elevation-2" data-dismiss="modal"><i class='bx-fw bx bx-x-circle'></i> Cerrar</button>
+                <button type="button" wire:click.prevent="storePermissions()" class="btn btn-success elevation-2"><i class='bx-fw bx bx-save'></i> Guardar</button>
             </div>
 
         </div>
