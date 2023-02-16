@@ -60,57 +60,81 @@
                                 <div class="row">
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        <label for="schools">Universidad:</label>
-                                        <select name="school_id" id="school_id" class="orm-control form-group select2bs4">
-                                            <option selected></option>
-                                            @foreach( $list_schools as $school )
-                                                <option {{ ( $school->id == $item->school_id ?? '' )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('school_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                    </div>
 
-                                    <div class="form-group col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        <label>Logo:</label>
-                                        <div class="input-group">
-                                            <label class="input-group-btn">
-                                                <span class="btn btn-primary btn-file elevation-2">
-                                                    <i class='bx bx-fw bx-cloud-upload'></i> Cargar imagen <input accept=".jpg,.png,.jpeg,.gif" class="hidden" name="upload_image" type="file" id="upload_image">
-                                                </span>
-                                            </label>
-                                            &nbsp;&nbsp;
-                                            <input class="form-control @error('logo_url') is-invalid @enderror" name="logo_url" readonly="readonly" id="logo_url" type="text" value="{{ $item->logo_url }}">
-                                            @error('logo_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                        <div class="row">
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label for="schools">Universidad:</label>
+                                                <select name="school_id" id="school_id" class="form-control select2bs4">
+                                                    <option selected></option>
+                                                    @foreach( $list_schools as $school )
+                                                        <option {{ ( $school->id == $item->school_id ?? '' )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('school_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label for="title">Título del sitio:</label>
+                                                <input type="text" name="title" id="address" class="form-control @error('title') is-invalid @enderror" value="{{ $item->title }}">
+                                                @error('title')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label for="base_url">URL:</label>
+                                                <input type="text" name="base_url" id="base_url" class="form-control @error('base_url') is-invalid @enderror" value="{{ $item->base_url }}">
+                                                @error('base_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label for="server_name">Nombre del servidor:</label>
+                                                <input type="text" name="server_name" id="server_name" class="form-control @error('server_name') is-invalid @enderror" value="{{ $item->server_name }}">
+                                                @error('server_name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label for="social_networks">Redes sociales:</label>
+                                                <input type="text" name="social_networks" id="social_networks" class="form-control @error('social_networks') is-invalid @enderror" value="{{ $item->social_networks }}">
+                                                @error('social_networks')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+
                                         </div>
+
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        <label for="title">Título del sitio:</label>
-                                        <input type="text" name="title" id="address" class="form-control form-group @error('title') is-invalid @enderror" value="{{ $item->title }}">
-                                        @error('title')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                    </div>
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        <label for="base_url">URL:</label>
-                                        <input type="text" name="base_url" id="base_url" class="form-control form-group @error('base_url') is-invalid @enderror" value="{{ $item->base_url }}">
-                                        @error('base_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                    </div>
+                                        <div class="row">
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        <label for="server_name">Nombre del servidor:</label>
-                                        <input type="text" name="server_name" id="server_name" class="form-control form-group @error('server_name') is-invalid @enderror" value="{{ $item->server_name }}">
-                                        @error('server_name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                    </div>
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label>Logo:</label>
+                                                <div class="input-group">
+                                                    <label class="input-group-btn">
+                                                <span class="btn btn-primary btn-file elevation-2" onchange="uploadImage()" data-action="btn-upload" data-input-url="logo_url" data-preview-image="logo_preview">
+                                                    <i class='bx bx-fw bx-cloud-upload btn-upload'></i> Cargar imagen <input accept=".jpg,.png,.jpeg,.gif" class="hidden" name="upload_image" type="file" id="upload_image">
+                                                </span>
+                                                    </label>
+                                                    &nbsp;&nbsp;
+                                                    <input class="form-control @error('logo_url') is-invalid @enderror" name="logo_url" readonly="readonly" id="logo_url" type="text" value="{{ $item->logo_url }}">
+                                                    @error('logo_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                </div>
+                                            </div>
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        <label for="social_networks">Redes sociales:</label>
-                                        <input type="text" name="social_networks" id="social_networks" class="form-control form-group @error('social_networks') is-invalid @enderror" value="{{ $item->social_networks }}">
-                                        @error('social_networks')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                    </div>
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                                        <label for="social_networks">Previsualización del logo:</label>
-                                        <img src="{{ $item->logo_url }}" id="logo_preview">
+                                                <label for="social_networks">Previsualización del logo:</label>
+
+                                                <img
+                                                    src="{{ $item->logo_url }}"
+                                                    id="logo_preview"
+                                                    class="w-100 shadow-1-strong rounded mb-4"
+                                                    height="340px"
+                                                />
+
+                                            </div>
+
+                                        </div>
+
                                     </div>
 
                                     <div class="col-12 text-right mt-4">
@@ -143,72 +167,17 @@
 @endsection
 
 @section('scripts')
+
+    <script src="{{ asset('scripts/sites/index.blade.js') }}"></script>
+
     <script>
-        $(document).on('change','.btn-file :file',function(){
 
-            let input    = $(this);
+        let url_upload_image = '{{ route("image-upload-image") }}';
 
-            let numFiles = input.get(0).files ? input.get(0).files.length : 1;
+        let token            = '{{ csrf_token() }}';
 
-            let label    = input.val().replace(/\\/g,'/').replace(/.*\//,'');
-
-            input.trigger('fileselect',[numFiles,label]);
-
-        });
-
-        $('.btn-file :file').on('fileselect',function(event,numFiles,label){
-
-            let input = $(this).parents('.input-group').find(':text');
-
-            let log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-            if (input.length) {
-
-                input.val(log);
-                //console.log(input)
-            } else {
-
-                if (log) alert(log);
-                //console.log(log)
-            }
-
-            let url_upload_image = '{{ route("image-upload-image") }}';
-
-            let token            = '{{ csrf_token() }}';
-
-            let form             = new FormData();
-
-            let files            = $('#upload_image')[0].files[0];
-
-            form.append('file',files);
-            $.ajax({
-                url: url_upload_image, // Set the url
-                method: 'post',
-                headers: {
-                    'X-CSRF-TOKEN': token
-                },
-                data: form,
-                contentType: false,
-                processData: false,
-                success: function(response){
-                    console.log(response);
-
-                    $('#logo_url').val(response.location);
-                    $("#logo_preview").attr("src",response.location);
-                    /*if(response != 0){
-
-                        $("#img").attr("src",response);
-                        $(".preview img").show(); // Display image element
-
-                    }else{
-
-                        alert('file not uploaded');
-
-                    }*/
-                },
-            });
-            //console.log(files)
-        });
+        uploadImage( url_upload_image, token );
 
     </script>
+
 @endsection

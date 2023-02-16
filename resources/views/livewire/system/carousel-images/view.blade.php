@@ -83,7 +83,7 @@
                                 <td>{{ $row->image_url }}</td>
                                 <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
-                                    @if( ___getAccessButton( [ $row->id ] ) )
+                                    @if( ___getAccessButton( [ $row->school_id ] ) )
 
                                         <div class="btn-group dropdown mb-2">
 

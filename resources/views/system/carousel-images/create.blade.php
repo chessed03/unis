@@ -67,7 +67,7 @@
                                                 <select name="site_id" id="site_id" class="form-control select2bs4 @error('site_id') is-invalid @enderror">
                                                     <option selected></option>
                                                     @foreach( $list_sites as $site )
-                                                        <option {{ ( $site->id == old('site_id') ?? '' )  ? 'selected' : '' }} value="{{ $site->id }}">{{ $site->title }}</option>
+                                                        <option {{ ( $site->id == old('site_id') ?? '' )  ? 'selected' : '' }} value="{{ $site->id }}">{{ $site->server_name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('site_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
@@ -169,7 +169,6 @@
     <script>
 
         let url_upload_image = '{{ route("image-upload-image") }}';
-
 
         let token            = '{{ csrf_token() }}';
 

@@ -22,35 +22,47 @@ class CarouselImage extends Model
     {
         $result = null;
 
-        $query  = DB::table( self::TABLE );
+        $query  = DB::table( self::TABLE .' as c')
+            ->select(
+                's.school_id',
+                'c.id',
+                'c.site_id',
+                'c.title',
+                'c.description',
+                'c.image_url',
+                'c.status'
+                )
+            ->leftjoin('sites as s', 's.id', '=', 'c.site_id');
 
-        $query->whereRaw('title LIKE "' . $keyWord . '"');
+
+
+        $query->whereRaw('c.title LIKE "' . $keyWord . '"');
 
         if ( $orderBy == 1 ) {
 
-            $query->orderByRaw('title ASC');
+            $query->orderByRaw('c.title ASC');
 
         }
 
         if ( $orderBy == 2 ) {
 
-            $query->orderByRaw('title DESC');
+            $query->orderByRaw('c.title DESC');
 
         }
 
         if ( $orderBy == 3 ) {
 
-            $query->orderByRaw('created_at DESC');
+            $query->orderByRaw('c.created_at DESC');
 
         }
 
         if ( $orderBy == 4 ) {
 
-            $query->orderByRaw('created_at ASC');
+            $query->orderByRaw('c.created_at ASC');
 
         }
 
-        $query->whereRaw('status = "' . self::ALIVE . '"');
+        $query->whereRaw('c.status = "' . self::ALIVE . '"');
 
         $result = $query->paginate($paginateNumber);
 

@@ -70,6 +70,7 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
+                            <th class="text-center">Logo</th>
                             <th class="text-center">Sitio</th>
                             <th class="text-center">Título</th>
                             <th class="text-center"></th>
@@ -79,7 +80,15 @@
 
                         @foreach( $rows as $key => $row )
                             <tr>
-                                <td>{{ $row->base_url }}</td>
+                                <td>
+                                    <img
+                                        src="{{ $row->logo_url }}"
+                                        id="image_preview"
+                                        class="shadow-1-strong rounded mb-4"
+                                        height="65px" width="90px"
+                                    />
+                                </td>
+                                <td>{{ $row->server_name }}</td>
                                 <td>{{ $row->title }}</td>
                                 <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
