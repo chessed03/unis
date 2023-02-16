@@ -13,7 +13,7 @@ class ServiceImagesS3
             return true;
         }
 
-        $base              = "https://sistemaenlineaerp.s3.us-west-1.amazonaws.com";
+        $base              = "https://sandpipermarketing.s3.amazonaws.com";
 
         $client_name       = ($request->file($image_name)->getClientOriginalName()) ?? "image";
 

@@ -10,9 +10,13 @@ class Schools extends Component
 {
 
     use WithPagination;
+
     protected $paginationTheme = 'bootstrap';
+
     protected $listeners       = ['destroy'];
+
     public $paginateNumber     = 5;
+
     public $orderBy            = 3;
 
     public $keyWord;

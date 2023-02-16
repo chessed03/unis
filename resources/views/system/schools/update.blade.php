@@ -37,7 +37,7 @@
 
                             <div class="row justify-content-between">
 
-                                <h6>Editar universidades</h6>
+                                <h6>Editar universidad</h6>
 
                                 <a href="{{ route('school-index') }}">
                                     <button type="button" class="btn btn-info elevation-2">

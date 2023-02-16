@@ -41,6 +41,12 @@ window.initSelectCustomerSelect = () => {
         width: '100%'
     });
 
+    $('.select2bs4').select2({
+        theme: 'bootstrap4',
+        placeholder: 'Selecciona una opción',
+        width: '100%'
+    });
+
 }
 
 initSelectCustomerSelect();

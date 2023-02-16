@@ -32,7 +32,7 @@ class PostController extends Controller
     public function index( Request $request )
     {
 
-        $module    = 'Configuración';
+        $module    = 'Publicación';
 
         $submodule = 'Posts';
 
@@ -49,7 +49,7 @@ class PostController extends Controller
     public function create( Request $request )
     {
 
-        $module       = 'Configuración';
+        $module       = 'Publicación';
 
         $submodule    = 'Posts';
 
@@ -104,7 +104,7 @@ class PostController extends Controller
     public function update( Request $request )
     {
 
-        $module       = 'Configuración';
+        $module       = 'Publicación';
 
         $submodule    = 'Posts';
 
@@ -159,13 +159,13 @@ class PostController extends Controller
 
     }
 
-    public function uploadImage( Request $request )
-    {
-
-        $img = ServiceImagesS3::upload( $request, "file" );
-
-        return response()->json( ['location' => $img->url] );
-
-    }
+//    public function uploadImage( Request $request )
+//    {
+//
+//        $img = ServiceImagesS3::upload( $request, "file" );
+//
+//        return response()->json( ['location' => $img->url] );
+//
+//    }
 
 }

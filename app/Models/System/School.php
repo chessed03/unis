@@ -56,6 +56,7 @@ class School extends Model
         $result = $query->paginate($paginateNumber);
 
         return $result;
+
     }
 
     public static function getAliveSchools()

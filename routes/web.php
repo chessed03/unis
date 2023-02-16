@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\System\CarouselImageController;
+use App\Http\Controllers\System\SiteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\System\UserController;
 use App\Http\Controllers\System\PostController;
 use App\Http\Controllers\System\SchoolController;
+use App\Http\Controllers\System\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +40,15 @@ Route::group(['middleware' => 'auth'], function () {
 
             Route::get('home', 'index')->name('home');
             Route::get('403', 'unauthorized')->name('403');
+
+        });
+
+    Route::controller(ImageController::class)
+        ->prefix('images')
+        ->as('image-')
+        ->group(function () {
+
+            Route::post('upload-image', 'uploadImage')->name('upload-image');
 
         });
 
@@ -83,9 +95,38 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('save-create', 'saveCreate')->name('save-create');
                 Route::get('update/{id}', 'update')->name('update');
                 Route::post('save-update', 'saveUpdate')->name('save-update');
-                Route::post('upload-image', 'uploadImage')->name('upload-image');
+                //Route::post('upload-image', 'uploadImage')->name('upload-image');
 
             });
+
+        #Routes sites
+        Route::controller(SiteController::class)
+            ->prefix('sites')
+            ->as('site-')
+            ->group(function () {
+
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
+
+            });
+
+        #Routes carousel images
+        Route::controller(CarouselImageController::class)
+            ->prefix('carousel-images')
+            ->as('carousel-image-')
+            ->group(function () {
+
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
+
+            });
+
     });
 
 });

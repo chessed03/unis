@@ -37,7 +37,7 @@
 
                             <div class="row justify-content-between">
 
-                                <h6>Crear posts</h6>
+                                <h6>Crear post</h6>
 
                                 <a href="{{ route('post-index') }}">
                                     <button type="button" class="btn btn-info elevation-2">
@@ -129,7 +129,7 @@
 
     <script>
 
-        let url_upload_image = '{{ route("post-upload-image") }}';
+        let url_upload_image = '{{ route("image-upload-image") }}';
 
         let token            = '{{ csrf_token() }}';
 
