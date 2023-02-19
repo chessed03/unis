@@ -11,7 +11,13 @@ function ___routeArmored()
     $route_name = Route::currentRouteName();
 
     session()->put('route_name', $route_name);
+    
+    if ( !session()->get('access_routes') ) {
 
+        return redirect()->route('welcome');
+
+    }
+    
     $result = (object)[
         'route_name'    => session()->get('route_name'),
         'routes_access' => session()->get('access_routes')[0]
