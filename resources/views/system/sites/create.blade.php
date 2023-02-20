@@ -164,7 +164,7 @@
 
 @section('scripts')
 
-    <script src="{{ asset('scripts/sites/index.blade.js') }}"></script>
+{{--    <script src="{{ asset('scripts/sites/index.blade.js') }}"></script>--}}
 
     <script>
 

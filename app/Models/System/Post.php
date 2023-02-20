@@ -16,19 +16,19 @@ class Post extends Model
         'schools' => 'json'
     ];
 
-    const TABLE    = "posts";
+    const TABLE = "posts";
 
-    const DELETED  = 0;
+    const DELETED = 0;
 
-    const ALIVE    = 1;
+    const ALIVE = 1;
 
-    public static function getAlivePostsForView( $keyWord, $paginateNumber, $orderBy )
+    public static function getAlivePostsForView($keyWord, $paginateNumber, $orderBy)
     {
         $schools = ___getPermissionUser()->schools;
 
         $result = null;
 
-        $query  = DB::table( self::TABLE );
+        $query = DB::table(self::TABLE);
 
         $query->where(function ($q) use ($schools) {
 
@@ -44,25 +44,25 @@ class Post extends Model
 
         $query->whereRaw('title LIKE "' . $keyWord . '"');
 
-        if ( $orderBy == 1 ) {
+        if ($orderBy == 1) {
 
             $query->orderByRaw('title ASC');
 
         }
 
-        if ( $orderBy == 2 ) {
+        if ($orderBy == 2) {
 
             $query->orderByRaw('title DESC');
 
         }
 
-        if ( $orderBy == 3 ) {
+        if ($orderBy == 3) {
 
             $query->orderByRaw('created_at DESC');
 
         }
 
-        if ( $orderBy == 4 ) {
+        if ($orderBy == 4) {
 
             $query->orderByRaw('created_at ASC');
 
@@ -70,7 +70,7 @@ class Post extends Model
 
         $collection = $query->paginate($paginateNumber);
 
-        if ( $collection ) {
+        if ($collection) {
 
             $result = $collection;
 
@@ -83,17 +83,17 @@ class Post extends Model
     {
         $shoolsPermissions = ___getPermissionUser()->write;
 
-        return School::getAliveSchoolsByArrayId( $shoolsPermissions );
+        return School::getAliveSchoolsByArrayId($shoolsPermissions);
     }
 
-    public static function validatePostTitle( $titulo, $id )
+    public static function validatePostTitle($titulo, $id)
     {
 
         $result = null;
 
-        $query  = DB::table(self::TABLE);
+        $query = DB::table(self::TABLE);
 
-        if ( $id ) {
+        if ($id) {
 
             $query->where('id', '!=', $id);
 
@@ -105,7 +105,7 @@ class Post extends Model
 
         $rows = $query->count();
 
-        if ( $rows ) {
+        if ($rows) {
 
             $result = $rows;
 
@@ -115,21 +115,22 @@ class Post extends Model
 
     }
 
-    public static function createItem( $data )
+    public static function createItem($data)
     {
 
-        $item             = new self();
-        $item->title      = $data->title;
-        $item->slug       = $data->slug;
-        $item->subtitle   = $data->subtitle;
-        $item->schools    = $data->schools;
-        $item->content    = $data->content;
-        $item->created_by = auth()->user()->id."-".auth()->user()->name;
+        $item = new self();
+        $item->title = $data->title;
+        $item->slug = $data->slug;
+        $item->subtitle = $data->subtitle;
+        $item->schools = $data->schools;
+        $item->content = $data->content;
+        $item->image_feature_url = $data->image_feature_url;
+        $item->created_by = auth()->user()->id . "-" . auth()->user()->name;
 
 
-        if( $item->save() ) {
+        if ($item->save()) {
 
-            Binnacle::binnacleRegister( 'create', self::TABLE, 'post', $item->id );
+            Binnacle::binnacleRegister('create', self::TABLE, 'post', $item->id);
 
             return true;
 
@@ -139,19 +140,20 @@ class Post extends Model
         return false;
     }
 
-    public static function updateItem( $data )
+    public static function updateItem($data)
     {
 
-        $item             = self::where('id', $data->id)->first();
-        $item->title      = $data->title;
-        $item->slug       = $data->slug;
-        $item->subtitle   = $data->subtitle;
-        $item->schools    = $data->schools;
-        $item->content    = $data->content;
+        $item = self::where('id', $data->id)->first();
+        $item->title = $data->title;
+        $item->slug = $data->slug;
+        $item->subtitle = $data->subtitle;
+        $item->schools = $data->schools;
+        $item->content = $data->content;
+        $item->image_feature_url = $data->image_feature_url;
 
-        if( $item->update() ) {
+        if ($item->update()) {
 
-            Binnacle::binnacleRegister( 'update', self::TABLE, 'post', $item->id );
+            Binnacle::binnacleRegister('update', self::TABLE, 'post', $item->id);
 
             return true;
 
@@ -159,6 +161,27 @@ class Post extends Model
         }
 
         return false;
+    }
+
+    public static function getPostById( $id )
+    {
+
+        $result = null;
+
+        if ( $id ) {
+
+            $query = self::find( $id );
+
+            if ( $query ) {
+
+                $result = $query;
+
+            }
+
+        }
+
+        return $result;
+
     }
 
 

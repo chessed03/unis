@@ -66,5 +66,25 @@ class ModuleTableSeeder extends Seeder
             'created_by' => '1-Root',
         ]);
 
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '6',
+            'name'       => 'Sitios',
+            'route'      => 'site-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '7',
+            'name'       => 'Carrusel de imágenes',
+            'route'      => 'carousel-image-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
     }
 }

@@ -17,8 +17,9 @@ return new class extends Migration
         Schema::create('carousel_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('site_id');
-            $table->string('title');
-            $table->string('description');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->string('link_url')->nullable();
             $table->string('image_url');
             $table->smallInteger('status')->default(1);
             $table->string('created_by');

@@ -16,10 +16,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('title');
             $table->string('slug');
             $table->string('subtitle');
             $table->json('schools');
+            $table->string('image_feature_url');
             $table->text('content');
             $table->smallInteger('status')->default(1);
             $table->timestamp('created_at')->useCurrent();

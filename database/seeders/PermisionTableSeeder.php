@@ -17,7 +17,7 @@ class PermisionTableSeeder extends Seeder
     {
         DB::table('permissions')->insert([
             'user_id'     => '1',
-            'permissions' => '[{"read": [], "write": ["1"], "module_id": "2"}, {"read": [], "write": ["1"], "module_id": "3"}, {"read": [], "write": ["1"], "module_id": "5"}]',
+            'permissions' => '[{"read": [], "write": ["1"], "module_id": "2"}, {"read": [], "write": ["1"], "module_id": "3"}, {"read": [], "write": ["1"], "module_id": "5"}, {"read": [], "write": ["1"], "module_id": "6"}, {"read": [], "write": ["1"], "module_id": "7"}]',
             'created_by'  => '1-Root',
         ]);
     }

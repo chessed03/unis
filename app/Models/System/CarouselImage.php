@@ -27,6 +27,7 @@ class CarouselImage extends Model
                 's.school_id',
                 'c.id',
                 'c.site_id',
+                'c.name',
                 'c.title',
                 'c.description',
                 'c.image_url',
@@ -36,17 +37,17 @@ class CarouselImage extends Model
 
 
 
-        $query->whereRaw('c.title LIKE "' . $keyWord . '"');
+        $query->whereRaw('c.name LIKE "' . $keyWord . '"');
 
         if ( $orderBy == 1 ) {
 
-            $query->orderByRaw('c.title ASC');
+            $query->orderByRaw('c.name ASC');
 
         }
 
         if ( $orderBy == 2 ) {
 
-            $query->orderByRaw('c.title DESC');
+            $query->orderByRaw('c.name DESC');
 
         }
 
@@ -117,9 +118,11 @@ class CarouselImage extends Model
 
         $item              = new self();
         $item->site_id     = $data->site_id;
-        $item->image_url   = $data->image_url;
+        $item->name        = $data->name;
         $item->title       = $data->title;
         $item->description = $data->description;
+        $item->link_url    = $data->link_url;
+        $item->image_url   = $data->image_url;
         $item->created_by  = auth()->user()->id."-".auth()->user()->name;
 
 
@@ -140,9 +143,11 @@ class CarouselImage extends Model
 
         $item              = self::where('id', $data->id)->first();
         $item->site_id     = $data->site_id;
-        $item->image_url   = $data->image_url;
+        $item->name        = $data->name;
         $item->title       = $data->title;
         $item->description = $data->description;
+        $item->link_url    = $data->link_url;
+        $item->image_url   = $data->image_url;
 
         if( $item->update() ) {
 

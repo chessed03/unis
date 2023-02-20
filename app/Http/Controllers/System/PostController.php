@@ -70,11 +70,12 @@ class PostController extends Controller
     {
 
         $request->validate([
-            'title'    => 'required',
-            'slug'     => 'required',
-            'subtitle' => 'required',
-            'schools'  => 'required',
-            'content'  => 'required'
+            'title'             => 'required',
+            'slug'              => 'required',
+            'subtitle'          => 'required',
+            'schools'           => 'required',
+            'image_feature_url' => 'required',
+            'content'           => 'required'
         ]);
 
         $validatePostTitle = Post::validatePostTitle( $request->title, null );
@@ -128,11 +129,12 @@ class PostController extends Controller
     {
 
         $request->validate([
-            'title'    => 'required',
-            'slug'     => 'required',
-            'subtitle' => 'required',
-            'schools'  => 'required',
-            'content'  => 'required'
+            'title'             => 'required',
+            'slug'              => 'required',
+            'subtitle'          => 'required',
+            'schools'           => 'required',
+            'image_feature_url' => 'required',
+            'content'           => 'required'
         ]);
 
         $validatePostTitle = Post::validatePostTitle( $request->title, $request->id );
@@ -159,13 +161,15 @@ class PostController extends Controller
 
     }
 
-//    public function uploadImage( Request $request )
-//    {
-//
-//        $img = ServiceImagesS3::upload( $request, "file" );
-//
-//        return response()->json( ['location' => $img->url] );
-//
-//    }
+    public function preview( Request $request )
+    {
+        $id = $request->id;
+
+        $post = Post::getPostById( $id );
+
+        return  view('system.posts.preview', [
+            'post' => $post
+        ]);
+    }
 
 }

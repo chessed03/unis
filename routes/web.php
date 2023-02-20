@@ -95,7 +95,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('save-create', 'saveCreate')->name('save-create');
                 Route::get('update/{id}', 'update')->name('update');
                 Route::post('save-update', 'saveUpdate')->name('save-update');
-                //Route::post('upload-image', 'uploadImage')->name('upload-image');
+                Route::get('preview/{id}', 'preview')->name('preview');
 
             });
 

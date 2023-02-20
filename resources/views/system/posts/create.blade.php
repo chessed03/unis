@@ -57,27 +57,27 @@
 
                                 <div class="row">
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                         <label for="title">Titulo:</label>
-                                        <input type="text" name="title" id="title" class="form-control form-group @error('title') is-invalid @enderror" value="{{ old('title') }}" oninput="generateSlug()">
+                                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" oninput="generateSlug()">
                                         @error('title')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                         <label for="slug">Slug:</label>
-                                        <input type="text" name="slug" id="slug" class="form-control form-group slug @error('slug') is-invalid @enderror" value="{{ old('slug') }}">
+                                        <input type="text" name="slug" id="slug" class="form-control slug @error('slug') is-invalid @enderror" value="{{ old('slug') }}">
                                         @error('slug')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                         <label for="subtitle">Subtitulo:</label>
-                                        <input type="text" name="subtitle" id="subtitle" class="form-control form-group @error('subtitle') is-invalid @enderror" value="{{ old('subtitle') }}">
+                                        <input type="text" name="subtitle" id="subtitle" class="form-control @error('subtitle') is-invalid @enderror" value="{{ old('subtitle') }}">
                                         @error('subtitle')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
-                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                         <label for="schools">Universidades:</label>
-                                        <div class="select2-success form-group @error('schools') is-invalid @enderror">
+                                        <div class="select2-success @error('schools') is-invalid @enderror">
                                             <select name="schools[]" id="schools" class="select2" data-dropdown-css-class="select2-success" multiple="multiple">
                                                 @foreach( $list_schools as $item )
                                                     <option {{ ( in_array( $item->id, old('schools') ?? [] ) ) ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
@@ -87,9 +87,48 @@
                                         @error('schools')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+
+                                        <label>Imágen del post</label>
+                                        <div class="input-group">
+
+                                            <label class="input-group-btn">
+                                                <span class="btn btn-primary btn-file elevation-2" onchange="uploadImage()" data-action="btn-upload" data-input-url="image_feature_url" data-preview-image="image_feature_preview">
+                                                    <i class='bx bx-fw bx-cloud-upload btn-upload'></i> Cargar imagen <input accept=".jpg,.png,.jpeg,.gif" class="hidden" name="upload_image" type="file" id="upload_image">
+                                                </span>
+                                            </label>
+                                            &nbsp;&nbsp;
+                                            <input class="form-control @error('image_feature_url') is-invalid @enderror" name="image_feature_url" readonly="readonly" id="image_feature_url" type="text" value="{{ old('image_feature_url') }}">
+
+                                            @error('image_feature_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                        </div>
+
+                                    </div>
+
                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+                                        <div class="row">
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+
+                                                <label for="image_feature_preview">Previsualización de imágen:</label>
+
+                                                <img
+                                                    src="{{ asset('template/admin/img/sitio/site-working-none.png') }}"
+                                                    id="image_feature_preview"
+                                                    class="w-100 shadow-1-strong rounded mb-4"
+                                                    height="340px"
+                                                />
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                         <label for="content">Contenido:</label>
-                                        <textarea name="content" id="content" class="form-control form-group tiny-editor">{{ old('content') }}</textarea>
+                                        <textarea name="content" id="content" class="form-control tiny-editor">{{ old('content') }}</textarea>
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -134,6 +173,8 @@
         let token            = '{{ csrf_token() }}';
 
         tinyEditor( url_upload_image, token );
+
+        uploadImage( url_upload_image, token );
 
     </script>
 

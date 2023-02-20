@@ -95,6 +95,12 @@
 
                                                 <div class="dropdown-menu">
 
+                                                    <a class="dropdown-item text-primary" href="{{ route('post-preview', [ 'id' => $row->id ]) }}" target="_blank">
+
+                                                        <i class="bx bx-fw bxs-bullseye"></i> Vista previa
+
+                                                    </a>
+
                                                     <a class="dropdown-item text-primary" href="{{ route('post-update', [ 'id' => $row->id ]) }}">
 
                                                         <i class="bx bx-fw bxs-pencil"></i> Editar
@@ -131,6 +137,12 @@
 
                         </tbody>
                     </table>
+                </div>
+
+                <div>
+
+                    {!! $rows->links() !!}
+
                 </div>
 
             </div>

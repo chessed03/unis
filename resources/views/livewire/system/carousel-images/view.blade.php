@@ -70,7 +70,7 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">Titulo</th>
+                            <th class="text-center">Nombre</th>
                             <th class="text-center">Subtitulo</th>
                             <th class="text-center"></th>
                         </tr>
@@ -79,7 +79,7 @@
 
                         @foreach( $rows as $key => $row )
                             <tr>
-                                <td>{{ $row->title }}</td>
+                                <td>{{ $row->name }}</td>
                                 <td>{{ $row->image_url }}</td>
                                 <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
@@ -131,6 +131,13 @@
 
                         </tbody>
                     </table>
+
+                </div>
+
+                <div>
+
+                    {!! $rows->links() !!}
+
                 </div>
 
             </div>

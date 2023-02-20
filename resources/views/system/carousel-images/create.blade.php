@@ -76,6 +76,14 @@
 
                                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
 
+                                                <label for="name">Nombre de la imágen:</label>
+                                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                                                @error('name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+
                                                 <label for="title">Título de la imágen:</label>
                                                 <input type="text" name="title" id="address" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
                                                 @error('title')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
@@ -87,6 +95,14 @@
                                                 <label for="description">Descripción:</label>
                                                 <input type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror" value="{{ old('description') }}">
                                                 @error('description')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+
+                                                <label for="link_url">URL:</label>
+                                                <input type="text" name="link_url" id="link_url" class="form-control @error('link_url') is-invalid @enderror" value="{{ old('link_url') }}">
+                                                @error('link_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
 
                                             </div>
 
@@ -164,7 +180,7 @@
 
 @section('scripts')
 
-    <script src="{{ asset('scripts/carousel-images/index.blade.js') }}"></script>
+{{--    <script src="{{ asset('scripts/carousel-images/index.blade.js') }}"></script>--}}
 
     <script>
 

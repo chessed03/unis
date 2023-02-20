@@ -69,10 +69,9 @@ class CarouselImageController extends Controller
     {
 
         $request->validate([
-            'site_id'     => 'required',
-            'image_url'   => 'required',
-            'title'       => 'required',
-            'description' => 'required',
+            'site_id'   => 'required',
+            'name'      => 'required',
+            'image_url' => 'required'
         ]);
 
         $validateImageName = CarouselImage::validateImageName( $request->title, null );
@@ -126,10 +125,9 @@ class CarouselImageController extends Controller
     {
 
         $request->validate([
-            'site_id'     => 'required',
-            'image_url'   => 'required',
-            'title'       => 'required',
-            'description' => 'required',
+            'site_id'   => 'required',
+            'name'      => 'required',
+            'image_url' => 'required'
         ]);
 
         $validateImageName = CarouselImage::validateImageName( $request->title, $request->id );
