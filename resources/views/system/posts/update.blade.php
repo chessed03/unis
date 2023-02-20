@@ -139,12 +139,6 @@
 
                                     <div class="col-12 text-right mt-4">
 
-                                        <a href="{{ route('post-preview', [ 'id' => $item->id ]) }}">
-                                            <button type="button" class="btn btn-info elevation-2 mr-4">
-                                                <i class="bx bx-fw bxs-bullseye"></i> Vista previa
-                                            </button>
-                                        </a>
-
                                         <a href="{{ route('post-index') }}">
                                             <button type="button" class="btn btn-danger elevation-2 mr-4">
                                                 <i class="bx bx-fw bx-x-circle"></i> Cancelar
