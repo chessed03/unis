@@ -57,11 +57,11 @@
                                 </a>
                             </form>
 
-                            <div class="dropdown-divider"></div>
+                            {{--<div class="dropdown-divider"></div>
 
                             <a href="#" class="dropdown-item">
                                 <i class='bx-fw bx bx-log-out-circle'></i> Cerrar sesión
-                            </a>
+                            </a>--}}
 
                         </div>
 
