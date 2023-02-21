@@ -20,6 +20,7 @@ class Permission extends Model
     const REMOVED    = 0;
 
     const ALIVE      = 1;
+    
     public static function getPermissions( $user_id )
     {
         $permissions = null;

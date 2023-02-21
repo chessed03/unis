@@ -118,14 +118,14 @@ class Post extends Model
     public static function createItem($data)
     {
 
-        $item = new self();
-        $item->title = $data->title;
-        $item->slug = $data->slug;
-        $item->subtitle = $data->subtitle;
-        $item->schools = $data->schools;
-        $item->content = $data->content;
+        $item                    = new self();
+        $item->title             = $data->title;
+        $item->slug              = $data->slug;
+        $item->subtitle          = $data->subtitle;
+        $item->schools           = $data->schools;
+        $item->content           = $data->content;
         $item->image_feature_url = $data->image_feature_url;
-        $item->created_by = auth()->user()->id . "-" . auth()->user()->name;
+        $item->created_by        = auth()->user()->id . "-" . auth()->user()->name;
 
 
         if ($item->save()) {
@@ -143,12 +143,12 @@ class Post extends Model
     public static function updateItem($data)
     {
 
-        $item = self::where('id', $data->id)->first();
-        $item->title = $data->title;
-        $item->slug = $data->slug;
-        $item->subtitle = $data->subtitle;
-        $item->schools = $data->schools;
-        $item->content = $data->content;
+        $item                    = self::where('id', $data->id)->first();
+        $item->title             = $data->title;
+        $item->slug              = $data->slug;
+        $item->subtitle          = $data->subtitle;
+        $item->schools           = $data->schools;
+        $item->content           = $data->content;
         $item->image_feature_url = $data->image_feature_url;
 
         if ($item->update()) {

@@ -13,7 +13,9 @@ class Module extends Model
     protected $table = 'modules';
 
     const TABLE      = 'modules';
+
     const REMOVED    = 0;
+    
     const ALIVE      = 1;
 
     public static function getModulesForMenu( $user_id )
