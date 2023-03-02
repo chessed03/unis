@@ -14,6 +14,7 @@ class Users extends Component
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners       = ['destroy'];
+    
     public $paginateNumber     = 5;
 
     public $orderBy            = 3;

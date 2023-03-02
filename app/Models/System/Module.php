@@ -86,36 +86,40 @@ class Module extends Model
             foreach ( $menu_modules as $a => $access) {
 
                 $sessionAccess = session()->get('access_permissions');
+                
+                if ( $sessionAccess ) {
 
-                foreach ( $sessionAccess as $s => $routeAccess) {
+                    foreach ( $sessionAccess as $s => $routeAccess) {
 
-                    if ( $access['route'] == $routeAccess->module_route ) {
-
-                        if ( $routeAccess->access ) {
-
-                            $keyAccess = explode('-', $access['route']);
-
-                            foreach ($routeCollection as $route) {
-
-                                $keyRoute = explode('-', $route->getName());
-
-                                if ( $keyRoute[0] == $keyAccess[0] ) {
-
-                                    array_push($item_routes, $route->getName());
-
+                        if ( $access['route'] == $routeAccess->module_route ) {
+    
+                            if ( $routeAccess->access ) {
+    
+                                $keyAccess = explode('-', $access['route']);
+    
+                                foreach ($routeCollection as $route) {
+    
+                                    $keyRoute = explode('-', $route->getName());
+    
+                                    if ( $keyRoute[0] == $keyAccess[0] ) {
+    
+                                        array_push($item_routes, $route->getName());
+    
+                                    }
+    
                                 }
-
+    
+                            } else {
+    
+                                array_push( $item_routes, $access['route'] );
+    
                             }
-
-                        } else {
-
-                            array_push( $item_routes, $access['route'] );
-
+    
                         }
-
+    
                     }
 
-                }
+                }            
 
             }
 

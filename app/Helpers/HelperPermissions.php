@@ -14,7 +14,7 @@ function ___routeArmored()
     
     if ( !session()->get('access_routes') ) {
 
-        return redirect()->route('welcome');
+        return redirect()->route('home');
 
     }
     
@@ -22,8 +22,27 @@ function ___routeArmored()
         'route_name'    => session()->get('route_name'),
         'routes_access' => session()->get('access_routes')[0]
     ];
-
+    
     return $result;
+
+}
+
+function ___getAccess( $request, $next, $access_route )
+{
+     
+    if ( !isset($access_route->route_name) ) {
+               
+        return redirect()->route('home');
+
+    }
+
+    if( !in_array( $access_route->route_name, $access_route->routes_access ) ) {
+
+        return redirect()->route('403');
+
+    }
+
+    return $next($request);
 
 }
 

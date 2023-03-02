@@ -10,6 +10,7 @@ class CarouselImages extends Component
 {
 
     use WithPagination;
+    
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners       = ['destroy'];

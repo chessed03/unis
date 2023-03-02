@@ -21,9 +21,9 @@ use App\Http\Controllers\System\ImageController;
 */
 
 Auth::routes([
-    //'register' => false,
-    'verify' => true,
-    'reset' => false
+    'register' => false,
+    'verify'   => true,
+    'reset'    => false
 ]);
 
 Route::group(['middleware' => 'auth'], function () {

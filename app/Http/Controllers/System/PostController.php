@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth');
 
@@ -18,16 +18,10 @@ class PostController extends Controller
 
             $access_route = ___routeArmored();
 
-            if( !in_array( $access_route->route_name, $access_route->routes_access ) ) {
-
-                return redirect()->route('403');
-
-            }
-
-            return $next($request);
+            return ___getAccess( $request, $next, $access_route );
 
         });
-    }
+    }*/
 
     public function index( Request $request )
     {
