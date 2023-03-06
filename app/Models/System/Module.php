@@ -128,7 +128,7 @@ class Module extends Model
             session()->put('access_routes', [
                 $access_routes
             ]);
-
+            
         }
 
         return $menu_sidebar;

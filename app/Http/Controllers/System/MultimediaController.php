@@ -5,23 +5,14 @@ namespace App\Http\Controllers\System;
 use App\Http\Controllers\Controller;
 use App\Services\ServiceImagesS3;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class ImageController extends Controller
+class MultimediaController extends Controller
 {
-
-    /*public function __construct()
+    
+    public function __construct()
     {
         $this->middleware('auth');
-
-        $this->middleware(function ($request, $next) {
-
-            $access_route = ___routeArmored();
-
-            return ___getAccess( $request, $next, $access_route );
-
-        });
-    }*/
+    }
 
     public function uploadImage( Request $request )
     {
@@ -31,5 +22,5 @@ class ImageController extends Controller
         return response()->json( ['location' => $img->url] );
 
     }
-    
+
 }

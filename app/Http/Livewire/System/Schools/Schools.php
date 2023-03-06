@@ -24,7 +24,7 @@ class Schools extends Component
     public function render()
     {
 
-        $keyWord        = '%'.$this->keyWord .'%';
+        $keyWord        = '%' . $this->keyWord . '%';
 
         $paginateNumber = $this->paginateNumber;
 

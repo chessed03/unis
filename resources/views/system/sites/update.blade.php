@@ -168,11 +168,9 @@
 
 @section('scripts')
 
-{{--    <script src="{{ asset('scripts/sites/index.blade.js') }}"></script>--}}
-
     <script>
 
-        let url_upload_image = '{{ route("image-upload-image") }}';
+        let url_upload_image = '{{ route("multimedia-upload-image") }}';
 
         let token            = '{{ csrf_token() }}';
 

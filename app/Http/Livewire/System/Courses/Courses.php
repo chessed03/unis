@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\System\Posts;
+namespace App\Http\Livewire\System\Courses;
 
-use App\Models\System\Post;
-use Illuminate\Support\Str;
+use App\Models\System\Course;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Posts extends Component
-{
 
+class Courses extends Component
+{
+    
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
@@ -24,15 +24,16 @@ class Posts extends Component
 
     public function render()
     {
+
         $keyWord        = '%' . $this->keyWord . '%';
 
         $paginateNumber = $this->paginateNumber;
 
         $orderBy        = intval($this->orderBy);
 
-        $list_schools   = Post::getAliveSchools();
+        $list_schools   = Course::getAliveSchools();
 
-        $rows           = Post::getAlivePostsForView( $keyWord, $paginateNumber, $orderBy );
+        $rows           = Course::getAliveCoursesForView( $keyWord, $paginateNumber, $orderBy );
 
         if ( $paginateNumber > count($rows) ) {
 
@@ -40,10 +41,11 @@ class Posts extends Component
 
         }
 
-        return view('livewire.system.posts.view', [
+        return view('livewire.system.courses.view', [
             'rows'         => $rows,
             'list_schools' => $list_schools,
         ]);
+
     }
 
     public function messageAlert( $text, $icon )
@@ -57,12 +59,14 @@ class Posts extends Component
     {
         if ($id) {
 
-            $record         = Post::where('id', $id)->first();
+            $record         = Course::where('id', $id)->first();
             $record->status = 0;
             $record->update();
 
-            $this->messageAlert( 'Post eliminado.','success');
+            $this->messageAlert( 'Evento eliminado.','success');
 
         }
     }
+
+
 }
