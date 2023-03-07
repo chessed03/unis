@@ -149,6 +149,7 @@ class Course extends Model
                 
             self::find($item->id)->notices()->create([
 
+                'start_date' => $item->start_date,
                 'created_by' => $item->created_by
 
             ]);
@@ -188,7 +189,8 @@ class Course extends Model
                 if ( !is_null($data->launch_notice) ) {
                 
                     self::find($item->id)->notices()->create([
-    
+                        
+                        'start_date' => $item->start_date,
                         'created_by' => $item->created_by
         
                     ]);
@@ -197,7 +199,9 @@ class Course extends Model
 
             } else {
                                 
-                $notice->status = ( is_null($data->launch_notice) ) ? self::REMOVED : self::ALIVE ;
+                $notice->status     = ( is_null($data->launch_notice) ) ? self::REMOVED : self::ALIVE ;
+
+                $notice->start_date = $data->start_date;
 
                 $notice->update();               
 

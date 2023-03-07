@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('noticeable_id');
             $table->string('noticeable_type');
+            $table->timestamp('start_date');
             $table->smallInteger('status')->default(1);
             $table->string('created_by');
             $table->timestamp('created_at')->useCurrent();

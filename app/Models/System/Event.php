@@ -142,13 +142,12 @@ class Event extends Model
         if ($item->save()) {
 
             Binnacle::binnacleRegister('create', self::TABLE, 'event', $item->id);
-
-            //Notice::launchNoticeById( $item->id, self::class, $data->launch_notice, $item->created_by );
             
             if ( !is_null($data->launch_notice) ) {
                 
                 self::find($item->id)->notices()->create([
-
+                    
+                    'start_date' => $item->start_date,
                     'created_by' => $item->created_by
     
                 ]);
@@ -176,8 +175,6 @@ class Event extends Model
 
             Binnacle::binnacleRegister('update', self::TABLE, 'event', $item->id);
 
-            //Notice::launchNoticeById( $data->id, self::class, $data->launch_notice, $item->created_by );
-
             $notice = $item->notices()
                 ->where('noticeable_id', $data->id)
                 ->where('noticeable_type', self::class)
@@ -189,6 +186,7 @@ class Event extends Model
                 
                     self::find($item->id)->notices()->create([
     
+                        'start_date' => $item->start_date,
                         'created_by' => $item->created_by
         
                     ]);
@@ -197,7 +195,9 @@ class Event extends Model
 
             } else {
                                 
-                $notice->status = ( is_null($data->launch_notice) ) ? self::REMOVED : self::ALIVE ;
+                $notice->status     = ( is_null($data->launch_notice) ) ? self::REMOVED : self::ALIVE ;
+
+                $notice->start_date = $data->start_date;
 
                 $notice->update();               
 
