@@ -133,6 +133,7 @@ class Event extends Model
 
         $item              = new self();
         $item->name        = $data->name;
+        $item->slug        = $data->slug;
         $item->description = $data->description;
         $item->start_date  = $data->start_date;
         $item->finish_date = $data->finish_date;
@@ -169,6 +170,7 @@ class Event extends Model
 
         $item              = self::where('id', $data->id)->first();
         $item->name        = $data->name;
+        $item->slug        = $data->slug;
         $item->description = $data->description;
         $item->start_date  = $data->start_date;
         $item->finish_date = $data->finish_date;

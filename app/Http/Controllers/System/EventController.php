@@ -51,6 +51,7 @@ class EventController extends Controller
 
         $request->validate([
             'name'        => 'required',
+            'slug'        => 'required',
             'description' => 'required',
             'start_date'  => 'required',
             'finish_date' => 'required',
@@ -113,6 +114,7 @@ class EventController extends Controller
 
         $request->validate([
             'name'        => 'required',
+            'slug'        => 'required',
             'description' => 'required',
             'start_date'  => 'required',
             'finish_date' => 'required',

@@ -35,13 +35,17 @@ class Module extends Model
                     ->where('status', self::ALIVE)
                     ->first();
 
-                array_push($modules_user, $query->id);
+                if ( $query ) {
 
-                $access_permissions[$k] = (object)[
-                    'module_route' => $query->route,
-                    'module_id'    => intval($permision['module_id']),
-                    'access'       => count($permision['write']) > 0
-                ];
+                    array_push($modules_user, $query->id);
+
+                    $access_permissions[$k] = (object)[
+                        'module_route' => $query->route,
+                        'module_id'    => intval($permision['module_id']),
+                        'access'       => count($permision['write']) > 0
+                    ];
+
+                }
 
             }
 

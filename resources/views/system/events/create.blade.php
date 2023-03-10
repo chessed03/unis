@@ -76,10 +76,16 @@
 
                                                 <div class="row">
 
-                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                         <label for="name">Nombre del evento:</label>
-                                                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                                                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" oninput="generateSlug('name', 'slug')">
                                                         @error('name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                        <label for="slug">Slug:</label>
+                                                        <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ old('slug') }}">
+                                                        @error('slug')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                     </div>
         
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
