@@ -117,14 +117,21 @@ class School extends Model
     public static function createItem( $data )
     {
 
-        $item              = new self();
-        $item->name        = $data->name;
-        $item->address     = $data->address;
-        $item->contact     = $data->contact;
-        $item->phone       = $data->phone;
-        $item->email       = $data->email;
-        $item->description = $data->description;
-        $item->created_by  = auth()->user()->id."-".auth()->user()->name;
+        $item                  = new self();
+        $item->name            = $data->name;
+        $item->contact         = $data->contact;
+        $item->address         = $data->address;
+        $item->phone_main      = $data->phone_main;
+        $item->phone_secondary = $data->phone_secondary;
+        $item->email_main      = $data->email_main;
+        $item->email_secondary = $data->email_secondary;
+        $item->facebook        = $data->facebook;
+        $item->instagram       = $data->instagram;
+        $item->twitter         = $data->twitter;
+        $item->youtube         = $data->youtube;
+        $item->description     = $data->description;
+        $item->logo_url        = $data->logo_url;
+        $item->created_by      = auth()->user()->id."-".auth()->user()->name;
 
         if( $item->save() ) {
 
@@ -143,13 +150,20 @@ class School extends Model
     public static function updateItem( $data )
     {
 
-        $item              = self::where('id', $data->id)->first();
-        $item->name        = $data->name;
-        $item->address     = $data->address;
-        $item->contact     = $data->contact;
-        $item->phone       = $data->phone;
-        $item->email       = $data->email;
-        $item->description = $data->description;
+        $item                  = self::where('id', $data->id)->first();
+        $item->name            = $data->name;
+        $item->contact         = $data->contact;
+        $item->address         = $data->address;
+        $item->phone_main      = $data->phone_main;
+        $item->phone_secondary = $data->phone_secondary;
+        $item->email_main      = $data->email_main;
+        $item->email_secondary = $data->email_secondary;
+        $item->facebook        = $data->facebook;
+        $item->instagram       = $data->instagram;
+        $item->twitter         = $data->twitter;
+        $item->youtube         = $data->youtube;
+        $item->description     = $data->description;
+        $item->logo_url        = $data->logo_url;
 
         if( $item->update() ) {
 

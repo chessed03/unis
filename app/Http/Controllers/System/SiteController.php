@@ -51,11 +51,10 @@ class SiteController extends Controller
 
         $request->validate([
             'school_id'       => 'required',
-            'logo_url'        => 'required',
+            'favicon_url'     => 'required',
             'title'           => 'required',
             'base_url'        => 'required',
-            'server_name'     => 'required',
-            'social_networks' => 'required'
+            'server_name'     => 'required'
         ]);
 
         $validateSiteName = Site::validateSiteName( $request->title, null );
@@ -110,11 +109,10 @@ class SiteController extends Controller
 
         $request->validate([
             'school_id'       => 'required',
-            'logo_url'        => 'required',
+            'favicon_url'     => 'required',
             'title'           => 'required',
             'base_url'        => 'required',
-            'server_name'     => 'required',
-            'social_networks' => 'required'
+            'server_name'     => 'required'
         ]);
 
         $validateSiteName = Site::validateSiteName( $request->title, $request->id );

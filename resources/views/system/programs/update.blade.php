@@ -37,9 +37,9 @@
 
                             <div class="row justify-content-between">
 
-                                <h6>Crear evento</h6>
+                                <h6>Editar programa</h6>
 
-                                <a href="{{ route('event-index') }}">
+                                <a href="{{ route('program-index') }}">
                                     <button type="button" class="btn btn-info elevation-2">
                                         <i class="bx bx-fw bx-chevron-left-circle"></i> Regresar
                                     </button>
@@ -51,9 +51,11 @@
 
                         <div class="card-body">
 
-                            <form action="{{ route('event-save-create') }}" method="POST">
+                            <form action="{{ route('program-save-update') }}" method="POST">
 
                                 @csrf
+
+                                <input type="hidden" name="id" id="id" value="{{ $item->id }}">
 
                                 <div class="row">
 
@@ -61,51 +63,57 @@
 
                                         <div class="row">
 
-                                            {{--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="schools">Universidad:</label>
-                                                <select name="school_id" id="school_id" class="form-control select2bs4 @error('school_id') is-invalid @enderror">
-                                                    <option selected></option>
-                                                    @foreach( $list_schools as $school )
-                                                        <option {{ ( $school->id == old('school_id') ?? '' )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('school_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                            </div>--}}
-
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div  class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
 
                                                 <div class="row">
-
+                                                    
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                        <label for="name">Nombre del evento:</label>
-                                                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                                                        <label for="schools">Universidad:</label>
+                                                        <select name="school_id" id="school_id" class="form-control select2bs4 @error('school_id') is-invalid @enderror">
+                                                            <option selected></option>
+                                                            @foreach( $list_schools as $school )
+                                                                <option {{ ( $school->id == $item->school_id ?? '' )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('school_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                        <label for="name">Nombre del programa:</label>
+                                                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $item->name }}" oninput="generateSlug('name', 'slug')">
                                                         @error('name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                        <label for="slug">Slug:</label>
+                                                        <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror" value="{{ $item->slug }}">
+                                                        @error('slug')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                    </div>
+        
+                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                        <label for="level">Nivel:</label>
+                                                        <input type="text" name="level" id="level" class="form-control @error('level') is-invalid @enderror" value="{{ $item->level }}">
+                                                        @error('level')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                        <label for="area">Área:</label>
+                                                        <input type="text" name="area" id="area" class="form-control @error('area') is-invalid @enderror" value="{{ $item->area }}">
+                                                        @error('area')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                     </div>
         
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                                         <label for="description">Descripción:</label>
-                                                        <input type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror" value="{{ old('description') }}">
+                                                        <input type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror" value="{{ $item->description }}">
                                                         @error('description')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                                    </div>
-        
-                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
-                                                        <label for="start_date">Fecha de inicio:</label>
-                                                        <input type="text" name="start_date" id="start_date" class="form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date') }}">
-                                                        @error('start_date')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                                    </div>
-        
-                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
-                                                        <label for="finish_date">Fecha de cierre:</label>
-                                                        <input type="text" name="finish_date" id="finish_date" class="form-control @error('finish_date') is-invalid @enderror" value="{{ old('finish_date') }}">
-                                                        @error('finish_date')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                     </div>
 
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                        <label for="location">Ubicación:</label>
-                                                        <input type="text" name="location" id="location" class="form-control @error('location') is-invalid @enderror" value="{{ old('location') }}">
-                                                        @error('location')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                        <label for="duration">Duración:</label>
+                                                        <input type="text" name="duration" id="duration" class="form-control @error('duration') is-invalid @enderror" value="{{ $item->duration }}">
+                                                        @error('duration')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                     </div>
-
+        
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                                         <label>Imagen:</label>
                                                         <div class="input-group">
@@ -115,14 +123,9 @@
                                                         </span>
                                                             </label>
                                                             &nbsp;&nbsp;
-                                                            <input class="form-control @error('image_url') is-invalid @enderror" name="image_url" readonly="readonly" id="image_url" type="text" value="{{ old('image_url') }}">
+                                                            <input class="form-control @error('image_url') is-invalid @enderror" name="image_url" readonly="readonly" id="image_url" type="text" value="{{ $item->image_url }}">
                                                             @error('image_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                         </div>
-                                                    </div>
-        
-                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group custom-control custom-checkbox">
-                                                        <input class="custom-control-input custom-control-input-success custom-control-input-outline" type="checkbox" name="launch_notice" id="launch_notice">
-                                                        <label for="launch_notice" class="custom-control-label">Crear noticia</label>
                                                     </div>
 
                                                 </div>
@@ -136,7 +139,7 @@
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                                         <label for="image_preview">Previsualización de la imagen:</label>
                                                         <img
-                                                            src="{{ asset('template/admin/img/sitio/site-working-none.png') }}"
+                                                            src="{{ $item->image_url ?? asset('template/admin/img/sitio/site-working-none.png') }}"
                                                             id="image_preview"
                                                             class="w-100 shadow-1-strong rounded mb-4"
                                                             height="410px"
@@ -149,9 +152,18 @@
 
                                     </div>
 
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                        <label for="content">Contenido:</label>
+                                        <textarea name="content" id="content" class="form-control form-group tiny-editor">{{ $item->content }}</textarea>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                        @error('content')<span class="error text-danger small"><strong>{{ $message }}</strong></span> @enderror
+                                    </div>
+
                                     <div class="col-12 text-right mt-4">
 
-                                        <a href="{{ route('event-index') }}">
+                                        <a href="{{ route('program-index') }}">
                                             <button type="button" class="btn btn-danger elevation-2 mr-4">
                                                 <i class="bx-fw bx bx-x-circle"></i> Cancelar
                                             </button>
@@ -188,6 +200,8 @@
         let token            = '{{ csrf_token() }}';
 
         uploadImage( url_upload_image, token );
+
+        tinyEditor( url_upload_image, token );
 
     </script>
 

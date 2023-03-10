@@ -74,7 +74,7 @@
 
                                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                                 <label for="title">Título del sitio:</label>
-                                                <input type="text" name="title" id="address" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
+                                                <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}">
                                                 @error('title')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
 
@@ -90,10 +90,14 @@
                                                 @error('server_name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
 
-                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="social_networks">Redes sociales:</label>
-                                                <input type="text" name="social_networks" id="social_networks" class="form-control @error('social_networks') is-invalid @enderror" value="{{ old('social_networks') }}">
-                                                @error('social_networks')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                <label for="primary_color">Color primario:</label>
+                                                <input type="text" name="primary_color" id="primary_color" class="form-control" value="{{ old('primary_color') }}">
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                <label for="secondary_color">Color secundario:</label>
+                                                <input type="text" name="secondary_color" id="secondary_color" class="form-control" value="{{ old('secondary_color') }}">
                                             </div>
 
                                         </div>
@@ -105,30 +109,28 @@
                                         <div class="row">
 
                                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label>Logo:</label>
+                                                <label>Favicon:</label>
                                                 <div class="input-group">
                                                     <label class="input-group-btn">
-                                                <span class="btn btn-primary btn-file elevation-2" onchange="uploadImage()" data-action="btn-upload" data-input-url="logo_url" data-preview-image="logo_preview">
-                                                    <i class='bx bx-fw bx-cloud-upload btn-upload'></i> Cargar imagen <input accept=".jpg,.png,.jpeg,.gif" class="hidden" name="upload_image" type="file" id="upload_image">
+                                                <span class="btn btn-primary btn-file elevation-2" onchange="uploadImage()" data-action="btn-upload" data-input-url="favicon_url" data-preview-image="favicon_preview">
+                                                    <i class='bx bx-fw bx-cloud-upload btn-upload'></i> Cargar favicon <input accept=".ico" class="hidden" name="upload_image" type="file" id="upload_image">
                                                 </span>
                                                     </label>
                                                     &nbsp;&nbsp;
-                                                    <input class="form-control @error('logo_url') is-invalid @enderror" name="logo_url" readonly="readonly" id="logo_url" type="text" value="{{ old('logo_url') }}">
-                                                    @error('logo_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                    <input class="form-control @error('favicon_url') is-invalid @enderror" name="favicon_url" readonly="readonly" id="favicon_url" type="text" value="{{ old('favicon_url') }}">
+                                                    @error('favicon_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                <label for="logo_preview">Previsualización del logo:</label>
+                                                <label for="favicon_preview">Previsualización del favicon:</label>
                                                 <img
                                                     src="{{ asset('template/admin/img/sitio/site-working-none.png') }}"
-                                                    id="logo_preview"
+                                                    id="favicon_preview"
                                                     class="w-100 shadow-1-strong rounded mb-4"
-                                                    height="340px"
+                                                    height="280px"
                                                 />
                                             </div>
-
-                                    </div>
 
                                     </div>
 
@@ -163,7 +165,6 @@
 @endsection
 
 @section('scripts')
-
 
     <script>
 

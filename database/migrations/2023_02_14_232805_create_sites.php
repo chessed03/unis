@@ -17,11 +17,12 @@ return new class extends Migration
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('school_id');
-            $table->string('logo_url');
+            $table->string('favicon_url');
             $table->string('title');
             $table->string('base_url');
             $table->string('server_name');
-            $table->json('social_networks')->nullable();
+            $table->string('primary_color');
+            $table->string('secondary_color');
             $table->smallInteger('status')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->string('created_by');

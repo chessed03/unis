@@ -17,9 +17,11 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
-            $table->dateTime('start_date')->nullable();
-            $table->dateTime('finish_date')->nullable();
+            $table->string('description');
+            $table->dateTime('start_date');
+            $table->dateTime('finish_date');
+            $table->string('location');
+            $table->string('image_url');
             $table->smallInteger('status')->default(1);
             $table->string('created_by');
             $table->timestamp('created_at')->useCurrent();

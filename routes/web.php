@@ -10,6 +10,8 @@ use App\Http\Controllers\System\SchoolController;
 use App\Http\Controllers\System\MultimediaController;
 use App\Http\Controllers\System\EventController;
 use App\Http\Controllers\System\CourseController;
+use App\Http\Controllers\System\CertificationController;
+use App\Http\Controllers\System\ProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,7 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
 
             });
 
-        #Routes carousel events
+        #Routes events
         Route::controller(EventController::class)
             ->prefix('events')
             ->as('event-')
@@ -144,10 +146,38 @@ Route::group(['middleware' => 'auth'], function () {
 
             });
 
-        #Routes carousel courses
+        #Routes courses
         Route::controller(CourseController::class)
         ->prefix('courses')
         ->as('course-')
+        ->group(function () {
+
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('save-create', 'saveCreate')->name('save-create');
+            Route::get('update/{id}', 'update')->name('update');
+            Route::post('save-update', 'saveUpdate')->name('save-update');
+
+        });
+
+        #Routes certifications
+        Route::controller(CertificationController::class)
+        ->prefix('certifications')
+        ->as('certification-')
+        ->group(function () {
+
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('save-create', 'saveCreate')->name('save-create');
+            Route::get('update/{id}', 'update')->name('update');
+            Route::post('save-update', 'saveUpdate')->name('save-update');
+
+        });
+
+        #Routes programs
+        Route::controller(ProgramController::class)
+        ->prefix('programs')
+        ->as('program-')
         ->group(function () {
 
             Route::get('index', 'index')->name('index');

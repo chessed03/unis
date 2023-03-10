@@ -13,10 +13,6 @@ class Site extends Model
 
     protected $table = 'sites';
 
-    protected $casts = [
-        'social_networks'  => 'json'
-    ];
-
     const TABLE      = "sites";
 
     const REMOVED    = 0;
@@ -124,13 +120,13 @@ class Site extends Model
 
         $item                  = new self();
         $item->school_id       = $data->school_id;
-        $item->logo_url        = $data->logo_url;
+        $item->favicon_url     = $data->favicon_url;
         $item->title           = $data->title;
         $item->base_url        = $data->base_url;
         $item->server_name     = $data->server_name;
-        $item->social_networks = $data->social_networks;
+        $item->primary_color   = $data->primary_color;
+        $item->secondary_color = $data->secondary_color;
         $item->created_by      = auth()->user()->id."-".auth()->user()->name;
-
 
         if( $item->save() ) {
 
@@ -149,11 +145,12 @@ class Site extends Model
 
         $item                  = self::where('id', $data->id)->first();
         $item->school_id       = $data->school_id;
-        $item->logo_url        = $data->logo_url;
+        $item->favicon_url     = $data->favicon_url;
         $item->title           = $data->title;
         $item->base_url        = $data->base_url;
         $item->server_name     = $data->server_name;
-        $item->social_networks = $data->social_networks;
+        $item->primary_color   = $data->primary_color;
+        $item->secondary_color = $data->secondary_color;
 
         if( $item->update() ) {
 

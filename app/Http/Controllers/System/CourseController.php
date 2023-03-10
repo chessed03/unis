@@ -50,10 +50,12 @@ class CourseController extends Controller
     {
 
         $request->validate([
-            'name'            => 'required',
-            'description'     => 'required',
-            'start_date'      => 'required',
-            'finish_date'     => 'required',
+            'name'        => 'required',
+            'description' => 'required',
+            'start_date'  => 'required',
+            'finish_date' => 'required',
+            'location'    => 'required',
+            'image_url'   => 'required'
         ]);
         
         $validateCourseName = Course::validateCourseName( $request->name, null );
@@ -110,10 +112,12 @@ class CourseController extends Controller
     {
         
         $request->validate([
-            'name'            => 'required',
-            'description'     => 'required',
-            'start_date'      => 'required',
-            'finish_date'     => 'required',
+            'name'        => 'required',
+            'description' => 'required',
+            'start_date'  => 'required',
+            'finish_date' => 'required',
+            'location'    => 'required',
+            'image_url'   => 'required'
         ]);
         
         $validateCourseName = Course::validateCourseName( $request->name, $request->id );

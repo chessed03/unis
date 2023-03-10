@@ -6,24 +6,24 @@
 
             <div class="col-6">
 
-                <h6>Lista de Sitios</h6>
+                <h6>Lista de Certificaciones</h6>
 
             </div>
 
             <div class="col-6 text-right">
 
-                @if( ___getAccessButton( [] ) )
+                @if( ___getAccessButton([]) )
 
-                    <a href="{{ route('site-create') }}">
+                    <a href="{{ route('certification-create') }}">
                         <button class="btn btn-success elevation-2">
-                            <i class="bx bx-fw bxs-plus-circle"></i> Nuevo sitio
+                            <i class="bx bx-fw bxs-plus-circle"></i> Nuevo certificación
                         </button>
                     </a>
 
                 @else
 
                     <button type="button" class="btn btn-secondary" disabled>
-                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo sitio
+                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo certificación
                     </button>
 
                 @endif
@@ -70,29 +70,16 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">Logo</th>
-                            <th class="text-center">Sitio</th>
-                            <th class="text-center">Título</th>
+                            <th class="text-center">Nombre</th>
                             <th class="text-center"></th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach( $rows as $key => $row )
-                            <tr>
-                                <td>
-                                    <img
-                                        src="{{ $row->favicon_url }}"
-                                        id="image_preview"
-                                        class="shadow-1-strong rounded mb-4"
-                                        height="65px" width="90px"
-                                    />
-                                </td>
-                                <td>{{ $row->server_name }}</td>
-                                <td>{{ $row->title }}</td>
-                                <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
-
-                                    @if( ___getAccessButton( [ $row->school_id ] ) )
+                            @foreach( $rows as $key => $row )
+                                <tr>
+                                    <td>{{ $row->name }}</td>
+                                    <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
                                         <div class="btn-group dropdown mb-2">
 
@@ -104,7 +91,7 @@
 
                                             <div class="dropdown-menu">
 
-                                                <a class="dropdown-item text-primary" href="{{ route('site-update', [ 'id' => $row->id ]) }}">
+                                                <a class="dropdown-item text-primary" href="{{ route('certification-update', [ 'id' => $row->id ]) }}">
 
                                                     <i class="bx bx-fw bxs-pencil"></i> Editar
 
@@ -120,26 +107,18 @@
 
                                         </div>
 
-                                    @else
-
-                                        <div class="btn-group dropdown mb-2">
-
-                                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                                Opciones
-
-                                            </button>
-
-                                        </div>
-
-                                    @endif
-
-                                </td>
-                            </tr>
-                        @endforeach
+                                    </td>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
+                </div>
+
+                <div>
+
+                    {!! $rows->links() !!}
+
                 </div>
 
             </div>

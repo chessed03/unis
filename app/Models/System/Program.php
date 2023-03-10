@@ -6,36 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Course extends Model
+class Program extends Model
 {
-
+    
     use HasFactory;
 
-    protected $table = 'courses';
+    protected $table = 'programs';
 
-    const TABLE      = "courses";
+    const TABLE      = "programs";
 
     const REMOVED    = 0;
 
     const ALIVE      = 1;
 
-
-    # Relationship polymorphic
-    public function notices()
-    {
-        
-        return $this->morphMany(Notice::class, 'noticeable');
-
-    }
-
-    public static function findNoticeById( $id )
-    {
-        
-        return Notice::findNoticeById( $id , self::class );
-        
-    }
-
-    public static function getAliveCoursesForView($keyWord, $paginateNumber, $orderBy)
+    public static function getAliveProgramsForView($keyWord, $paginateNumber, $orderBy)
     {
         $schools = ___getPermissionUser()->schools;
 
@@ -99,7 +83,7 @@ class Course extends Model
         return School::getAliveSchoolsByArrayId($shoolsPermissions);
     }
 
-    public static function validateCourseName($name, $id)
+    public static function validateProgramName($name, $id)
     {
 
         $result = null;
@@ -132,31 +116,21 @@ class Course extends Model
     {
 
         $item              = new self();
+        $item->school_id   = $data->school_id;
         $item->name        = $data->name;
+        $item->slug        = $data->slug;
+        $item->level       = $data->level;
+        $item->area        = $data->area;
         $item->description = $data->description;
-        $item->start_date  = $data->start_date;
-        $item->finish_date = $data->finish_date;
-        $item->location    = $data->location;
+        $item->duration    = $data->duration;
         $item->image_url   = $data->image_url;
+        $item->content     = $data->content;
         $item->created_by  = auth()->user()->id . "-" . auth()->user()->name;
 
 
         if ($item->save()) {
 
-            Binnacle::binnacleRegister('create', self::TABLE, 'course', $item->id);
-
-           //Notice::launchNoticeById( $item->id, self::class, $data->launch_notice, $item->created_by );
-            
-           if ( !is_null($data->launch_notice) ) {
-                
-                self::find($item->id)->notices()->create([
-
-                    'start_date' => $item->start_date,
-                    'created_by' => $item->created_by
-
-                ]);
-
-            }
+            Binnacle::binnacleRegister('create', self::TABLE, 'program', $item->id);       
                         
             return true;
 
@@ -170,46 +144,19 @@ class Course extends Model
     {
 
         $item              = self::where('id', $data->id)->first();
+        $item->school_id   = $data->school_id;
         $item->name        = $data->name;
+        $item->slug        = $data->slug;
+        $item->level       = $data->level;
+        $item->area        = $data->area;
         $item->description = $data->description;
-        $item->start_date  = $data->start_date;
-        $item->finish_date = $data->finish_date;
-        $item->location    = $data->location;
+        $item->duration    = $data->duration;
         $item->image_url   = $data->image_url;
+        $item->content     = $data->content;
 
         if ($item->update()) {
 
-            Binnacle::binnacleRegister('update', self::TABLE, 'course', $item->id);
-
-            //Notice::launchNoticeById( $data->id, self::class, $data->launch_notice, $item->created_by );
-
-            $notice = $item->notices()
-                ->where('noticeable_id', $data->id)
-                ->where('noticeable_type', self::class)
-                ->first();
-
-            if ( is_null( $notice ) ) {
-
-                if ( !is_null($data->launch_notice) ) {
-                
-                    self::find($item->id)->notices()->create([
-                        
-                        'start_date' => $item->start_date,
-                        'created_by' => $item->created_by
-        
-                    ]);
-    
-                }
-
-            } else {
-                                
-                $notice->status     = ( is_null($data->launch_notice) ) ? self::REMOVED : self::ALIVE ;
-
-                $notice->start_date = $data->start_date;
-
-                $notice->update();               
-
-            }
+            Binnacle::binnacleRegister('update', self::TABLE, 'program', $item->id);
 
             return true;
 

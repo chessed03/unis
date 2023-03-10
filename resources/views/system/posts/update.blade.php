@@ -61,13 +61,13 @@
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="title">Titulo:</label>
-                                        <input type="text" name="title" id="title" class="form-control form-group @error('title') is-invalid @enderror" value="{{ $item->title }}" oninput="generateSlug()">
+                                        <input type="text" name="title" id="title" class="form-control form-group @error('title') is-invalid @enderror" value="{{ $item->title }}" oninput="generateSlug('title', 'slug')">
                                         @error('title')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <label for="slug">Slug:</label>
-                                        <input type="text" name="slug" id="slug" class="form-control form-group slug @error('slug') is-invalid @enderror" value="{{ $item->slug }}">
+                                        <input type="text" name="slug" id="slug" class="form-control form-group @error('slug') is-invalid @enderror" value="{{ $item->slug }}">
                                         @error('slug')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                     </div>
 

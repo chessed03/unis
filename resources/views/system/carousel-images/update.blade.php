@@ -137,10 +137,10 @@
                                                 <label for="image_preview">Previsualización de imágen:</label>
 
                                                 <img
-                                                    src="{{ $item->image_url }}"
+                                                    src="{{ $item->image_url ?? asset('template/admin/img/sitio/site-working-none.png') }}"
                                                     id="image_preview"
                                                     class="w-100 shadow-1-strong rounded mb-4"
-                                                    height="340px"
+                                                    height="450px"
                                                 />
 
                                             </div>

@@ -50,10 +50,12 @@ class EventController extends Controller
     {
 
         $request->validate([
-            'name'            => 'required',
-            'description'     => 'required',
-            'start_date'      => 'required',
-            'finish_date'     => 'required',
+            'name'        => 'required',
+            'description' => 'required',
+            'start_date'  => 'required',
+            'finish_date' => 'required',
+            'location'    => 'required',
+            'image_url'   => 'required'
         ]);
         
         $validateEventName = Event::validateEventName( $request->name, null );
@@ -110,10 +112,12 @@ class EventController extends Controller
     {
 
         $request->validate([
-            'name'            => 'required',
-            'description'     => 'required',
-            'start_date'      => 'required',
-            'finish_date'     => 'required',
+            'name'        => 'required',
+            'description' => 'required',
+            'start_date'  => 'required',
+            'finish_date' => 'required',
+            'location'    => 'required',
+            'image_url'   => 'required'
         ]);
 
         $validateEventName = Event::validateEventName( $request->name, $request->id );

@@ -126,13 +126,13 @@ const convertToSlug = ( stringText ) => {
         .replace(/[^\w-]+/g, '');
 }
 
-const generateSlug = () => {
+const generateSlug = ( inputName, inputTarget ) => {
 
-    let stringText = $('#title').val();
+    let stringText = $('#' + inputName).val();
 
     let slugText   = convertToSlug( stringText );
 
-    $('.slug').val( slugText );
+    $('#' + inputTarget).val( slugText );
 
 }
 

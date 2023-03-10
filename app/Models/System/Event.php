@@ -136,6 +136,8 @@ class Event extends Model
         $item->description = $data->description;
         $item->start_date  = $data->start_date;
         $item->finish_date = $data->finish_date;
+        $item->location    = $data->location;
+        $item->image_url   = $data->image_url;
         $item->created_by  = auth()->user()->id . "-" . auth()->user()->name;
 
 
@@ -170,6 +172,8 @@ class Event extends Model
         $item->description = $data->description;
         $item->start_date  = $data->start_date;
         $item->finish_date = $data->finish_date;
+        $item->location    = $data->location;
+        $item->image_url   = $data->image_url;
 
         if ($item->update()) {
 

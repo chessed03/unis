@@ -48,11 +48,12 @@ class SchoolController extends Controller
 
         $request->validate([
             'name'        => 'required',
-            'address'     => 'required',
             'contact'     => 'required',
-            'phone'       => 'required',
-            'email'       => 'required',
-            'description' => 'required'
+            'address'     => 'required',
+            'phone_main'  => 'required',
+            'email_main'  => 'required',
+            'description' => 'required',
+            'logo_url'    => 'required'
         ]);
 
         $validateSchoolName = School::validateSchoolName( $request->title, null );
@@ -104,11 +105,12 @@ class SchoolController extends Controller
 
         $request->validate([
             'name'        => 'required',
-            'address'     => 'required',
             'contact'     => 'required',
-            'phone'       => 'required',
-            'email'       => 'required',
-            'description' => 'required'
+            'address'     => 'required',
+            'phone_main'  => 'required',
+            'email_main'  => 'required',
+            'description' => 'required',
+            'logo_url'    => 'required'
         ]);
 
         $validateSchoolName = School::validateSchoolName( $request->title, $request->id );

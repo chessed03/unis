@@ -37,9 +37,9 @@
 
                             <div class="row justify-content-between">
 
-                                <h6>Crear evento</h6>
+                                <h6>Crear certificación</h6>
 
-                                <a href="{{ route('event-index') }}">
+                                <a href="{{ route('certification-index') }}">
                                     <button type="button" class="btn btn-info elevation-2">
                                         <i class="bx bx-fw bx-chevron-left-circle"></i> Regresar
                                     </button>
@@ -51,7 +51,7 @@
 
                         <div class="card-body">
 
-                            <form action="{{ route('event-save-create') }}" method="POST">
+                            <form action="{{ route('certification-save-create') }}" method="POST">
 
                                 @csrf
 
@@ -61,23 +61,23 @@
 
                                         <div class="row">
 
-                                            {{--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="schools">Universidad:</label>
-                                                <select name="school_id" id="school_id" class="form-control select2bs4 @error('school_id') is-invalid @enderror">
-                                                    <option selected></option>
-                                                    @foreach( $list_schools as $school )
-                                                        <option {{ ( $school->id == old('school_id') ?? '' )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                                @error('school_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                            </div>--}}
-
                                             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
 
                                                 <div class="row">
 
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                        <label for="name">Nombre del evento:</label>
+                                                        <label for="schools">Universidad:</label>
+                                                        <select name="school_id" id="school_id" class="form-control select2bs4 @error('school_id') is-invalid @enderror">
+                                                            <option selected></option>
+                                                            @foreach( $list_schools as $school )
+                                                                <option {{ ( $school->id == old('school_id') ?? '' )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('school_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                        <label for="name">Nombre de la certificación:</label>
                                                         <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
                                                         @error('name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                     </div>
@@ -88,24 +88,6 @@
                                                         @error('description')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                     </div>
         
-                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
-                                                        <label for="start_date">Fecha de inicio:</label>
-                                                        <input type="text" name="start_date" id="start_date" class="form-control @error('start_date') is-invalid @enderror" value="{{ old('start_date') }}">
-                                                        @error('start_date')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                                    </div>
-        
-                                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
-                                                        <label for="finish_date">Fecha de cierre:</label>
-                                                        <input type="text" name="finish_date" id="finish_date" class="form-control @error('finish_date') is-invalid @enderror" value="{{ old('finish_date') }}">
-                                                        @error('finish_date')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                                    </div>
-
-                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                        <label for="location">Ubicación:</label>
-                                                        <input type="text" name="location" id="location" class="form-control @error('location') is-invalid @enderror" value="{{ old('location') }}">
-                                                        @error('location')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                                    </div>
-
                                                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                                         <label>Imagen:</label>
                                                         <div class="input-group">
@@ -118,11 +100,6 @@
                                                             <input class="form-control @error('image_url') is-invalid @enderror" name="image_url" readonly="readonly" id="image_url" type="text" value="{{ old('image_url') }}">
                                                             @error('image_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                                         </div>
-                                                    </div>
-        
-                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group custom-control custom-checkbox">
-                                                        <input class="custom-control-input custom-control-input-success custom-control-input-outline" type="checkbox" name="launch_notice" id="launch_notice">
-                                                        <label for="launch_notice" class="custom-control-label">Crear noticia</label>
                                                     </div>
 
                                                 </div>
@@ -151,7 +128,7 @@
 
                                     <div class="col-12 text-right mt-4">
 
-                                        <a href="{{ route('event-index') }}">
+                                        <a href="{{ route('certification-index') }}">
                                             <button type="button" class="btn btn-danger elevation-2 mr-4">
                                                 <i class="bx-fw bx bx-x-circle"></i> Cancelar
                                             </button>
@@ -192,3 +169,4 @@
     </script>
 
 @endsection
+
