@@ -65,7 +65,19 @@ function ___getPermissionUser()
 
     $permission = Permission::getPermissions( $id );
 
-    $module     = session()->get('access_permissions')[ array_search( $route_name, array_column(session()->get('access_permissions'), 'module_route') ) ];
+    $key_access = 0;
+
+    foreach ( session()->get('access_permissions') as $p => $key_permission ) {
+        
+        if ( $key_permission->module_route == $route_name ) {
+
+            $key_access = $key_permission->module_id;
+
+        }
+
+    }
+    
+    $module     = session()->get('access_permissions')[ $key_access ];
 
     $access     = $permission[ array_search( $module->module_id, array_column($permission, 'module_id') ) ];
 

@@ -39,7 +39,7 @@ class Module extends Model
 
                     array_push($modules_user, $query->id);
 
-                    $access_permissions[$k] = (object)[
+                    $access_permissions[$query->id] = (object)[
                         'module_route' => $query->route,
                         'module_id'    => intval($permision['module_id']),
                         'access'       => count($permision['write']) > 0
