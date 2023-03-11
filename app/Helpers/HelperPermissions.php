@@ -49,28 +49,26 @@ function ___getAccess( $request, $next, $access_route )
 function ___getPermissionUser()
 {
 
-    $result     = null;
+    $result            = null;
+    
+    $route             = explode('-', session()->get('route_name'));
 
-    $route      = explode('-', session()->get('route_name'));
+    $route_key         = array_search(end($route), $route);
 
-    $route_name = session()->get('route_name');
+    $route[$route_key] = 'index';
+   
+    $route_name        = implode('-', $route);
+    
+    $id                = Auth::id();
 
-    if ( $route[1] != 'index' ) {
+    $permission        = Permission::getPermissions( $id );
 
-        $route_name = $route[0] . '-' . 'index';
-
-    }
-
-    $id         = Auth::id();
-
-    $permission = Permission::getPermissions( $id );
-
-    $key_access = 0;
-
+    $key_access        = 0;
+    
     foreach ( session()->get('access_permissions') as $p => $key_permission ) {
         
-        if ( $key_permission->module_route == $route_name ) {
-
+        if ( $key_permission->module_route === $route_name ) {
+            
             $key_access = $key_permission->module_id;
 
         }
