@@ -28,7 +28,12 @@ return new class extends Migration
             $table->string('twitter');
             $table->string('youtube');
             $table->text('description');
+            $table->string('title_about_us');
+            $table->text('description_about_us');
+            $table->string('meta_keywords');
+            $table->string('meta_description');
             $table->string('logo_url');
+            $table->string('image_about_us_url');
             $table->smallInteger('status')->default(1);
             $table->timestamp('created_at')->useCurrent();
             $table->string('created_by');

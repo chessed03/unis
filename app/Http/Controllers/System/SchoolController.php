@@ -47,13 +47,18 @@ class SchoolController extends Controller
     {
 
         $request->validate([
-            'name'        => 'required',
-            'contact'     => 'required',
-            'address'     => 'required',
-            'phone_main'  => 'required',
-            'email_main'  => 'required',
-            'description' => 'required',
-            'logo_url'    => 'required'
+            'name'                 => 'required',
+            'contact'              => 'required',
+            'address'              => 'required',
+            'phone_main'           => 'required',
+            'email_main'           => 'required',
+            'description'          => 'required',
+            'logo_url'             => 'required',
+            'title_about_us'       => 'required',
+            'description_about_us' => 'required',
+            'meta_keywords'        => 'required',
+            'meta_description'     => 'required',
+            'image_about_us_url'   => 'required'   
         ]);
 
         $validateSchoolName = School::validateSchoolName( $request->title, null );
@@ -104,13 +109,17 @@ class SchoolController extends Controller
     {
 
         $request->validate([
-            'name'        => 'required',
-            'contact'     => 'required',
-            'address'     => 'required',
-            'phone_main'  => 'required',
-            'email_main'  => 'required',
-            'description' => 'required',
-            'logo_url'    => 'required'
+            'name'                 => 'required',
+            'contact'              => 'required',
+            'address'              => 'required',
+            'phone_main'           => 'required',
+            'email_main'           => 'required',
+            'description'          => 'required',
+            'logo_url'             => 'required',
+            'title_about_us'       => 'required',
+            'meta_keywords'        => 'required',
+            'meta_description'     => 'required',
+            'image_about_us_url'   => 'required'
         ]);
 
         $validateSchoolName = School::validateSchoolName( $request->title, $request->id );
