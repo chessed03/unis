@@ -81,32 +81,48 @@
                                     <td>{{ $row->name }}</td>
                                     <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
-                                        <div class="btn-group dropdown mb-2">
+                                        @if( ___getAccessButton( [ $row->school_id ] ) )
 
-                                            <button type="button" class="btn btn-primary elevation-2 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-group dropdown mb-2">
 
-                                                Opciones
+                                                <button type="button" class="btn btn-primary elevation-2 dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                            </button>
+                                                    Opciones
 
-                                            <div class="dropdown-menu">
+                                                </button>
 
-                                                <a class="dropdown-item text-primary" href="{{ route('certification-update', [ 'id' => $row->id ]) }}">
+                                                <div class="dropdown-menu">
 
-                                                    <i class="bx bx-fw bxs-pencil"></i> Editar
+                                                    <a class="dropdown-item text-primary" href="{{ route('certification-update', [ 'id' => $row->id ]) }}">
 
-                                                </a>
+                                                        <i class="bx bx-fw bxs-pencil"></i> Editar
 
-                                                <a class="dropdown-item text-danger" href="#" onclick="destroy('{{ $row->id }}')">
+                                                    </a>
 
-                                                    <i class="bx bx-fw bxs-trash-alt"></i> Eliminar
+                                                    <a class="dropdown-item text-danger" href="#" onclick="destroy('{{ $row->id }}')">
 
-                                                </a>
+                                                        <i class="bx bx-fw bxs-trash-alt"></i> Eliminar
+
+                                                    </a>
+
+                                                </div>
 
                                             </div>
 
-                                        </div>
+                                        @else
 
+                                            <div class="btn-group dropdown mb-2">
+    
+                                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    
+                                                    Opciones
+    
+                                                </button>
+    
+                                            </div>
+    
+                                        @endif    
+                                        
                                     </td>
                                 </tr>
                             @endforeach

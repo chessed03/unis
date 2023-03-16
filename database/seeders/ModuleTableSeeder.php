@@ -86,5 +86,55 @@ class ModuleTableSeeder extends Seeder
             'created_by' => '1-Root',
         ]);
 
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '8',
+            'name'       => 'Eventos',
+            'route'      => 'event-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '9',
+            'name'       => 'Cursos',
+            'route'      => 'course-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '10',
+            'name'       => 'Certificaciones',
+            'route'      => 'certification-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '10',
+            'name'       => 'Programas',
+            'route'      => 'program-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '10',
+            'name'       => 'Preguntas',
+            'route'      => 'faq-question-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
     }
 }
