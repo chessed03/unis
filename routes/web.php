@@ -12,6 +12,7 @@ use App\Http\Controllers\System\EventController;
 use App\Http\Controllers\System\CourseController;
 use App\Http\Controllers\System\CertificationController;
 use App\Http\Controllers\System\ProgramController;
+use App\Http\Controllers\System\FaqQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -178,6 +179,20 @@ Route::group(['middleware' => 'auth'], function () {
         Route::controller(ProgramController::class)
         ->prefix('programs')
         ->as('program-')
+        ->group(function () {
+
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('save-create', 'saveCreate')->name('save-create');
+            Route::get('update/{id}', 'update')->name('update');
+            Route::post('save-update', 'saveUpdate')->name('save-update');
+
+        });
+
+        #Routes faq-questions
+        Route::controller(FaqQuestionController::class)
+        ->prefix('faq-questions')
+        ->as('faq-question-')
         ->group(function () {
 
             Route::get('index', 'index')->name('index');
