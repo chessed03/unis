@@ -63,69 +63,70 @@
 
                                         <div class="row">
 
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="name">Nombre:</label>
-                                                <input type="text" name="name" id="name" class="form-control form-group @error('name') is-invalid @enderror" value="{{ $item->name }}">
+                                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $item->name }}">
                                                 @error('name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="contact">Contacto:</label>
-                                                <input type="text" name="contact" id="contact" class="form-control form-group @error('contact') is-invalid @enderror" value="{{ $item->contact }}">
+                                                <input type="text" name="contact" id="contact" class="form-control @error('contact') is-invalid @enderror" value="{{ $item->contact }}">
                                                 @error('contact')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                                 <label for="address">Dirección:</label>
-                                                <input type="text" name="address" id="address" class="form-control form-group @error('address') is-invalid @enderror" value="{{ $item->address }}">
+                                                <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{ $item->address }}">
                                                 @error('address')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="phone_main">Telefono principal:</label>
-                                                <input type="text" name="phone_main" id="phone_main" class="form-control form-group @error('phone_main') is-invalid @enderror" value="{{ $item->phone_main }}">
+                                                <input type="text" name="phone_main" id="phone_main" class="form-control @error('phone_main') is-invalid @enderror" value="{{ $item->phone_main }}">
                                                 @error('phone_main')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="phone_secondary">Telefono secundario:</label>
-                                                <input type="text" name="phone_secondary" id="phone_secondary" class="form-control form-group" value="{{ $item->phone_secondary }}">
+                                                <input type="text" name="phone_secondary" id="phone_secondary" class="form-control @error('phone_secondary') is-invalid @enderror" value="{{ $item->phone_secondary }}">
+                                                @error('phone_secondary')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="email_main">Correo principal:</label>
-                                                <input type="text" name="email_main" id="email_main" class="form-control form-group @error('email_main') is-invalid @enderror" value="{{ $item->email_main }}">
+                                                <input type="text" name="email_main" id="email_main" class="form-control @error('email_main') is-invalid @enderror" value="{{ $item->email_main }}">
                                                 @error('email_main')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="email_secondary">Correo secundario:</label>
-                                                <input type="text" name="email_secondary" id="email_secondary" class="form-control form-group @error('email_secondary') is-invalid @enderror" value="{{ $item->email_secondary }}">
+                                                <input type="text" name="email_secondary" id="email_secondary" class="form-control @error('email_secondary') is-invalid @enderror" value="{{ $item->email_secondary }}">
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="facebook">Facebook:</label>
-                                                <input type="text" name="facebook" id="facebook" class="form-control form-group" value="{{ $item->facebook }}">
+                                                <input type="text" name="facebook" id="facebook" class="form-control" value="{{ $item->facebook }}">
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="instagram">Instagram:</label>
-                                                <input type="text" name="instagram" id="instagram" class="form-control form-group" value="{{ $item->instagram }}">
+                                                <input type="text" name="instagram" id="instagram" class="form-control" value="{{ $item->instagram }}">
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="twitter">Twitter:</label>
-                                                <input type="text" name="twitter" id="twitter" class="form-control form-group" value="{{ $item->twitter }}">
+                                                <input type="text" name="twitter" id="twitter" class="form-control" value="{{ $item->twitter }}">
                                             </div>
         
-                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
                                                 <label for="youtube">Youtube:</label>
-                                                <input type="text" name="youtube" id="youtube" class="form-control form-group" value="{{ $item->youtube }}">
+                                                <input type="text" name="youtube" id="youtube" class="form-control" value="{{ $item->youtube }}">
                                             </div>
-                
-                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                                 <label for="description">Descripción:</label>
-                                                <input type="text" name="description" id="description" class="form-control form-group @error('description') is-invalid @enderror" value="{{ $item->description }}">
+                                                <input type="text" name="description" id="description" class="form-control @error('description') is-invalid @enderror" value="{{ $item->description }}">
                                                 @error('description')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
 
@@ -151,6 +152,18 @@
                                                 <label for="meta_description">Meta tags description:</label>
                                                 <input type="text" name="meta_description" id="meta_description" class="form-control @error('meta_description') is-invalid @enderror" value="{{ $item->meta_description }}">
                                                 @error('meta_description')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label for="platform_students_url">URL plataforma de estudiantes:</label>
+                                                <input type="text" name="platform_students_url" id="platform_students_url" class="form-control @error('platform_students_url') is-invalid @enderror" value="{{ $item->platform_students_url }}">
+                                                @error('platform_students_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                <label for="platform_teachers_url">URL plataforma de maestros:</label>
+                                                <input type="text" name="platform_teachers_url" id="platform_teachers_url" class="form-control @error('platform_teachers_url') is-invalid @enderror" value="{{ $item->platform_teachers_url }}">
+                                                @error('platform_teachers_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
 
                                         </div>

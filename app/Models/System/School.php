@@ -117,26 +117,28 @@ class School extends Model
     public static function createItem( $data )
     {
 
-        $item                       = new self();
-        $item->name                 = $data->name;
-        $item->contact              = $data->contact;
-        $item->address              = $data->address;
-        $item->phone_main           = $data->phone_main;
-        $item->phone_secondary      = $data->phone_secondary;
-        $item->email_main           = $data->email_main;
-        $item->email_secondary      = $data->email_secondary;
-        $item->facebook             = $data->facebook;
-        $item->instagram            = $data->instagram;
-        $item->twitter              = $data->twitter;
-        $item->youtube              = $data->youtube;
-        $item->description          = $data->description;
-        $item->logo_url             = $data->logo_url;
-        $item->title_about_us       = $data->title_about_us;
-        $item->description_about_us = $data->description_about_us;
-        $item->meta_keywords        = $data->meta_keywords;
-        $item->meta_description     = $data->meta_description;
-        $item->image_about_us_url   = $data->image_about_us_url;
-        $item->created_by           = auth()->user()->id."-".auth()->user()->name;
+        $item                        = new self();
+        $item->name                  = $data->name;
+        $item->contact               = $data->contact;
+        $item->address               = $data->address;
+        $item->phone_main            = $data->phone_main;
+        $item->phone_secondary       = $data->phone_secondary;
+        $item->email_main            = $data->email_main;
+        $item->email_secondary       = $data->email_secondary;
+        $item->facebook              = $data->facebook;
+        $item->instagram             = $data->instagram;
+        $item->twitter               = $data->twitter;
+        $item->youtube               = $data->youtube;
+        $item->description           = $data->description;
+        $item->logo_url              = $data->logo_url;
+        $item->title_about_us        = $data->title_about_us;
+        $item->description_about_us  = $data->description_about_us;
+        $item->meta_keywords         = $data->meta_keywords;
+        $item->meta_description      = $data->meta_description;
+        $item->image_about_us_url    = $data->image_about_us_url;
+        $item->platform_students_url = $data->platform_students_url;
+        $item->platform_teachers_url = $data->platform_teachers_url;
+        $item->created_by            = auth()->user()->id."-".auth()->user()->name;
 
         if( $item->save() ) {
 
@@ -155,24 +157,26 @@ class School extends Model
     public static function updateItem( $data )
     {
 
-        $item                       = self::where('id', $data->id)->first();
-        $item->name                 = $data->name;
-        $item->contact              = $data->contact;
-        $item->address              = $data->address;
-        $item->phone_main           = $data->phone_main;
-        $item->phone_secondary      = $data->phone_secondary;
-        $item->email_main           = $data->email_main;
-        $item->email_secondary      = $data->email_secondary;
-        $item->facebook             = $data->facebook;
-        $item->instagram            = $data->instagram;
-        $item->twitter              = $data->twitter;
-        $item->youtube              = $data->youtube;
-        $item->description          = $data->description;
-        $item->logo_url             = $data->logo_url;
-        $item->title_about_us       = $data->title_about_us;
-        $item->description_about_us = $data->description_about_us;
-        $item->meta_description     = $data->meta_description;
-        $item->image_about_us_url   = $data->image_about_us_url;
+        $item                        = self::where('id', $data->id)->first();
+        $item->name                  = $data->name;
+        $item->contact               = $data->contact;
+        $item->address               = $data->address;
+        $item->phone_main            = $data->phone_main;
+        $item->phone_secondary       = $data->phone_secondary;
+        $item->email_main            = $data->email_main;
+        $item->email_secondary       = $data->email_secondary;
+        $item->facebook              = $data->facebook;
+        $item->instagram             = $data->instagram;
+        $item->twitter               = $data->twitter;
+        $item->youtube               = $data->youtube;
+        $item->description           = $data->description;
+        $item->logo_url              = $data->logo_url;
+        $item->title_about_us        = $data->title_about_us;
+        $item->description_about_us  = $data->description_about_us;
+        $item->meta_description      = $data->meta_description;
+        $item->image_about_us_url    = $data->image_about_us_url;
+        $item->platform_students_url = $data->platform_students_url;
+        $item->platform_teachers_url = $data->platform_teachers_url;
 
         if( $item->update() ) {
 

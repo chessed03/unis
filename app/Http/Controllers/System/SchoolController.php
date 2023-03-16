@@ -51,7 +51,9 @@ class SchoolController extends Controller
             'contact'              => 'required',
             'address'              => 'required',
             'phone_main'           => 'required',
+            'phone_secondary'      => 'required',
             'email_main'           => 'required',
+            'email_secondary'      => 'required',
             'description'          => 'required',
             'logo_url'             => 'required',
             'title_about_us'       => 'required',
@@ -113,13 +115,16 @@ class SchoolController extends Controller
             'contact'              => 'required',
             'address'              => 'required',
             'phone_main'           => 'required',
+            'phone_secondary'      => 'required',
             'email_main'           => 'required',
+            'email_secondary'      => 'required',
             'description'          => 'required',
             'logo_url'             => 'required',
             'title_about_us'       => 'required',
+            'description_about_us' => 'required',
             'meta_keywords'        => 'required',
             'meta_description'     => 'required',
-            'image_about_us_url'   => 'required'
+            'image_about_us_url'   => 'required'  
         ]);
 
         $validateSchoolName = School::validateSchoolName( $request->title, $request->id );
