@@ -120,3 +120,11 @@ function ___getAccessButton( $schools )
     return $result;
 
 }
+
+function ___getNameSchools( $schools )
+{
+
+    $result = Permission::getDataSchool( $schools );
+    
+    return $result;
+}

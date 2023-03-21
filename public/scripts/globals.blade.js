@@ -21,6 +21,14 @@ const alertMessage = ( message, type ) => {
 
 }
 
+const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success elevation-2 ml-2',
+        cancelButton: 'btn btn-danger elevation-2 mr-2'
+    },
+    buttonsStyling: false
+})
+
 const changeIcon = id => {
 
     if ( $('#headerIconCard' + id).hasClass('bx bx-expand-alt bx-border-circle') ) {

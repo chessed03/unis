@@ -14,17 +14,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('faq_questions', function (Blueprint $table) {
+        Schema::create('deleted_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('school_id');
-            $table->string('question');
-            $table->text('answer');
-            $table->smallInteger('status')->default(1);
-            $table->string('created_by');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('figure_id')->nullable();
+            $table->string('user_name')->nullable();
+            $table->string('name');
+            $table->string('email');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->double('status')->default('1');
             $table->timestamp('created_at')->useCurrent();
+            $table->string('created_by')->default('Developer');
             $table->timestamp('updated_at')->default( DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP') );
-
-            $table->foreign('school_id', 'fk_faq_questions_schools')->references('id')->on('schools');
         });
     }
 
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq_questions');
+        Schema::dropIfExists('deleted_users');
     }
 };

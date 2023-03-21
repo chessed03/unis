@@ -61,7 +61,7 @@ class Posts extends Component
             $record->status = 0;
             $record->update();
 
-            $this->messageAlert( 'Post eliminado.','success');
+            $this->messageAlert( 'Publicación eliminada.','success');
 
         }
     }

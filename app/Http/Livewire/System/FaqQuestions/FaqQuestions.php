@@ -59,11 +59,11 @@ class FaqQuestions extends Component
     {
         if ($id) {
 
-            $record         = Event::where('id', $id)->first();
+            $record         = FaqQuestion::where('id', $id)->first();
             $record->status = 0;
             $record->update();
 
-            $this->messageAlert( 'Evento eliminado.','success');
+            $this->messageAlert( 'Pregunta eliminada.','success');
 
         }
     }

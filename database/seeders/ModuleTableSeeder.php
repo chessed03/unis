@@ -59,7 +59,7 @@ class ModuleTableSeeder extends Seeder
         DB::table('modules')->insert([
             'module_id'  => '4',
             'position'   => '5',
-            'name'       => 'Posts',
+            'name'       => 'Publicaciones',
             'route'      => 'post-index',
             'icon'       => 'bx bx-fw bx-toggle-left',
             'level'      => '1',
@@ -118,7 +118,7 @@ class ModuleTableSeeder extends Seeder
 
         DB::table('modules')->insert([
             'module_id'  => '4',
-            'position'   => '10',
+            'position'   => '11',
             'name'       => 'Programas',
             'route'      => 'program-index',
             'icon'       => 'bx bx-fw bx-toggle-left',
@@ -128,9 +128,19 @@ class ModuleTableSeeder extends Seeder
 
         DB::table('modules')->insert([
             'module_id'  => '4',
-            'position'   => '10',
+            'position'   => '12',
             'name'       => 'Preguntas',
             'route'      => 'faq-question-index',
+            'icon'       => 'bx bx-fw bx-toggle-left',
+            'level'      => '1',
+            'created_by' => '1-Root',
+        ]);
+
+        DB::table('modules')->insert([
+            'module_id'  => '4',
+            'position'   => '13',
+            'name'       => 'Videos',
+            'route'      => 'video-index',
             'icon'       => 'bx bx-fw bx-toggle-left',
             'level'      => '1',
             'created_by' => '1-Root',

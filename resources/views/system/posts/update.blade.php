@@ -37,7 +37,7 @@
 
                             <div class="row justify-content-between">
 
-                                <h6>Editar post</h6>
+                                <h6>Editar publicación</h6>
 
                                 <a href="{{ route('post-index') }}">
                                     <button type="button" class="btn btn-info elevation-2">

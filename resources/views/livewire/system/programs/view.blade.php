@@ -70,7 +70,8 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Institución</th>
+                            <th class="text-center">Programa</th>
                             <th class="text-center"></th>
                         </tr>
                         </thead>
@@ -78,6 +79,7 @@
 
                             @foreach( $rows as $key => $row )
                                 <tr>
+                                    <td>{{ $row->dataSchool->name }}</td>
                                     <td>{{ $row->name }}</td>
                                     <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 

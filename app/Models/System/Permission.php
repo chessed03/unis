@@ -151,4 +151,24 @@ class Permission extends Model
 
     }
 
+    public static function deletePermissions( $user_id )
+    {
+        
+        $query = self::where('user_id', $user_id)->first();
+
+        if ( $query ) {
+
+            $query->delete();
+
+        }
+
+        return true;
+
+    }
+
+    public static function getDataSchool( $schools )
+    {
+        return School::getAliveSchoolsByArrayId( $schools );
+    }
+
 }

@@ -15,7 +15,7 @@ class PostController extends Controller
 
         $module    = 'Publicación';
 
-        $submodule = 'Posts';
+        $submodule = 'Publicaciones';
 
         $location  = 'Inicio';
 
@@ -32,7 +32,7 @@ class PostController extends Controller
 
         $module       = 'Publicación';
 
-        $submodule    = 'Posts';
+        $submodule    = 'Publicaciones';
 
         $location     = 'Crear';
 
@@ -88,7 +88,7 @@ class PostController extends Controller
 
         $module       = 'Publicación';
 
-        $submodule    = 'Posts';
+        $submodule    = 'Publicaciones';
 
         $location     = 'Editar';
 

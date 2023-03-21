@@ -57,11 +57,33 @@ class Schools extends Component
     {
         if ($id) {
 
-            $record         = School::where('id', $id)->first();
-            $record->status = 0;
-            $record->update();
+            $validate = School::validateDestroy( $id );
 
-            $this->messageAlert( 'Universidad eliminada.','success');
+            if ( $validate ) {
+
+                $this->messageAlert( "La universidad está vinculada en {$validate->located}.",'info');
+                
+            } else {
+
+                $record         = School::where('id', $id)->first();
+                $record->status = 0;
+                $record->update();
+
+                if ( $record ) {
+
+                    $this->messageAlert( 'Universidad eliminada.','success');
+
+                } else {
+
+                    $this->messageAlert( 'Ups!, ocurrió un error','error');
+
+                }
+
+            }
+
+            
+
+            
 
         }
     }

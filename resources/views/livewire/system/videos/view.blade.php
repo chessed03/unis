@@ -6,24 +6,24 @@
 
             <div class="col-6">
 
-                <h6>Lista de Certificaciones</h6>
+                <h6>Lista de Videos</h6>
 
             </div>
 
             <div class="col-6 text-right">
 
-                @if( ___getAccessButton([]) )
+                @if( ___getAccessButton( [] ) )
 
-                    <a href="{{ route('certification-create') }}">
+                    <a href="{{ route('video-create') }}">
                         <button class="btn btn-success elevation-2">
-                            <i class="bx bx-fw bxs-plus-circle"></i> Nuevo certificación
+                            <i class="bx bx-fw bxs-plus-circle"></i> Nuevo video
                         </button>
                     </a>
 
                 @else
 
                     <button type="button" class="btn btn-secondary" disabled>
-                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo certificación
+                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo video
                     </button>
 
                 @endif
@@ -71,8 +71,10 @@
                         <thead>
                         <tr>
                             <th class="text-center">Institución</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center"></th>
+                            <th class="text-center">Video</th>
+                            <th class="text-center">URL</th>
+                            <th class="text-center">Estado</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -81,6 +83,21 @@
                                 <tr>
                                     <td>{{ $row->dataSchool->name }}</td>
                                     <td>{{ $row->name }}</td>
+                                    <td>{{ $row->video_url }}</td>
+                                    <td class="text-center" wire:key="{{ $row->id }}">
+
+                                        <div class="custom-control custom-switch custom-switch-on-success ml-4">
+                                            <input
+                                                type="checkbox"
+                                                class="custom-control-input check-permission check-module-{{ $row->id }}"
+                                                wire:click="setActiveStatus({{ $row->id  }})"
+                                                id="checkBoxStatus{{ $row->id }}"
+                                                value="{{ $row->id }}" {{ ( $row->status == 1 ) ? 'checked' : '' }}
+                                            >
+                                            <label class="custom-control-label" for="checkBoxStatus{{ $row->id }}">&nbsp;</label>
+                                        </div>
+
+                                    </td>
                                     <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
                                         @if( ___getAccessButton( [ $row->school_id ] ) )
@@ -95,12 +112,6 @@
 
                                                 <div class="dropdown-menu">
 
-                                                    <a class="dropdown-item text-primary" href="{{ route('certification-update', [ 'id' => $row->id ]) }}">
-
-                                                        <i class="bx bx-fw bxs-pencil"></i> Editar
-
-                                                    </a>
-
                                                     <a class="dropdown-item text-danger" href="#" onclick="destroy('{{ $row->id }}')">
 
                                                         <i class="bx bx-fw bxs-trash-alt"></i> Eliminar
@@ -114,29 +125,23 @@
                                         @else
 
                                             <div class="btn-group dropdown mb-2">
-    
+
                                                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split disabled" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    
+
                                                     Opciones
-    
+
                                                 </button>
-    
+
                                             </div>
-    
-                                        @endif    
-                                        
+
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach
 
                         </tbody>
                     </table>
-                </div>
-
-                <div>
-
-                    {!! $rows->links() !!}
-
                 </div>
 
             </div>

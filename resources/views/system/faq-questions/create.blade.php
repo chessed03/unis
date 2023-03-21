@@ -79,7 +79,7 @@
                                             </div>
 
                                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="answer">Nombre del evento:</label>
+                                                <label for="answer">Respuesta:</label>
                                                 <input type="text" name="answer" id="answer" class="form-control @error('answer') is-invalid @enderror" value="{{ old('answer') }}">
                                                 @error('answer')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>                                           

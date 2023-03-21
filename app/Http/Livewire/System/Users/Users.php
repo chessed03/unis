@@ -4,6 +4,8 @@ namespace App\Http\Livewire\System\Users;
 
 use App\Models\System\Permission;
 use App\Models\System\User;
+use App\Models\System\DeletedUser;
+use App\Models\System\Binnacle;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -19,11 +21,9 @@ class Users extends Component
 
     public $orderBy            = 3;
 
-    public $keyWord;
-
     public $updateMode         = false;
 
-    public $selected_id, $name, $email, $password, $password_confirmation, $schools, $permissions, $changePassword;
+    public $keyWord, $selected_id, $name, $email, $password, $password_confirmation, $schools, $permissions, $changePassword;
 
     public function render()
     {
@@ -96,11 +96,32 @@ class Users extends Component
             'password' => $this->password
         ];
 
-        $result = User::createItem( $data );
+        $validateUserEmail = User::validateUserEmail( $this->email, null );
+
+        if ( $validateUserEmail ) {
+
+            $this->messageAlert( "Ups!, ya existe un usuario con el correo: $this->email.", 'error');
+
+        } else {
+
+            $result = User::createItem( $data );
+
+            if ( $result ) {
+
+                $this->messageAlert( 'Usuario creado correctamente.','success' );
+
+            } else {
+
+                $this->messageAlert( 'Ups! ocurrio un error.','error' );
+
+            }
+
+        }
 
         $this->resetInput();
         $this->emit('closeCreateModal');
         $this->hydrate();
+
     }
 
     public function permissions( $id, $name )
@@ -171,12 +192,11 @@ class Users extends Component
     public function update()
     {
         if ( $this->selected_id ) {
-
+            
             if ( $this->changePassword ) {
 
                 $this->validate([
                     'name'     => 'required',
-                    'schools'  => 'required',
                     'email'    => 'required',
                     'password' => 'required|confirmed|min:8'
                 ]);
@@ -184,7 +204,6 @@ class Users extends Component
                 $data = (object)[
                     'id'       => $this->selected_id,
                     'name'     => $this->name,
-                    'schools'  => $this->schools,
                     'email'    => $this->email,
                     'password' => $this->password
                 ];
@@ -193,29 +212,37 @@ class Users extends Component
 
                 $this->validate([
                     'name'    => 'required',
-                    'schools' => 'required',
                     'email'   => 'required'
                 ]);
 
                 $data = (object)[
                     'id'       => $this->selected_id,
                     'name'     => $this->name,
-                    'schools'  => $this->schools,
                     'email'    => $this->email,
                     'password' => false
                 ];
 
             }
+            
+            $validateUserEmail = User::validateUserEmail( $this->email, $this->selected_id );
 
-            $result = User::updateItem( $data );
+            if ( $validateUserEmail ) {
 
-            if ( $result ) {
-
-                $this->messageAlert( 'Usuario actualizado correctamente.','success' );
-
+                $this->messageAlert( "Ups!, ya existe un usuario con el correo: $this->email.", 'error');
+    
             } else {
 
-                $this->messageAlert( 'Existió un error.','error' );
+                $result = User::updateItem( $data );
+
+                if ( $result ) {
+
+                    $this->messageAlert( 'Usuario actualizado correctamente.','success' );
+
+                } else {
+
+                    $this->messageAlert( 'Existió un error.','error' );
+
+                }
 
             }
 
@@ -226,6 +253,27 @@ class Users extends Component
 
         }
 
+    }
+
+    public function destroy( $id )
+    {
+        if ($id) {
+            
+            $record = User::where('id', $id)->first();
+            
+            Permission::deletePermissions( $record->id );
+
+            DeletedUser::generateRecord( $record );
+
+            if ( $record->delete() ) {
+
+                Binnacle::binnacleRegister('create', 'users', 'deleted user', $record->id);
+
+            }
+
+            $this->messageAlert( 'Usuario eliminado.','success');
+
+        }
     }
 
 }

@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\System\Courses;
+namespace App\Http\Livewire\System\Videos;
 
-use App\Models\System\Course;
+use App\Models\System\Video;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
-class Courses extends Component
+class Videos extends Component
 {
-    
-    use WithPagination;
 
+    use WithPagination;
+    
     protected $paginationTheme = 'bootstrap';
 
     protected $listeners       = ['destroy'];
@@ -31,9 +30,9 @@ class Courses extends Component
 
         $orderBy        = intval($this->orderBy);
 
-        $list_schools   = Course::getAliveSchools();
+        $list_schools   = Video::getAliveSchools();
 
-        $rows           = Course::getAliveCoursesForView( $keyWord, $paginateNumber, $orderBy );
+        $rows           = Video::getAliveVideosForView( $keyWord, $paginateNumber, $orderBy );
 
         if ( $paginateNumber > count($rows) ) {
 
@@ -41,11 +40,10 @@ class Courses extends Component
 
         }
 
-        return view('livewire.system.courses.view', [
+        return view('livewire.system.videos.view', [
             'rows'         => $rows,
             'list_schools' => $list_schools,
         ]);
-
     }
 
     public function messageAlert( $text, $icon )
@@ -55,18 +53,24 @@ class Courses extends Component
 
     }
 
+    public function setActiveStatus( $id )
+    {
+
+        Video::setActiveStatus( $id );
+
+    }
+
     public function destroy( $id )
     {
         if ($id) {
 
-            $record         = Course::where('id', $id)->first();
+            $record         = Video::where('id', $id)->first();
             $record->status = 0;
             $record->update();
 
-            $this->messageAlert( 'Curso eliminado.','success');
+            $this->messageAlert( 'Sitio eliminado.','success');
 
         }
     }
-
-
+    
 }

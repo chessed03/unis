@@ -58,11 +58,29 @@ class Sites extends Component
     {
         if ($id) {
 
-            $record         = Site::where('id', $id)->first();
-            $record->status = 0;
-            $record->update();
+            $validate = Site::validateDestroy( $id );
+            
+            if ( $validate ) {
 
-            $this->messageAlert( 'Sitio eliminado.','success');
+                $this->messageAlert( "el sitio está vinculado en {$validate->located}.",'info');
+                
+            } else {
+
+                $record         = Site::where('id', $id)->first();
+                $record->status = 0;
+                $record->update();
+
+                if ( $record ) {
+
+                    $this->messageAlert( 'Sitio eliminado.','success');
+
+                } else {
+
+                    $this->messageAlert( 'Ups!, ocurrió un error','error');
+
+                }
+            
+            }
 
         }
     }

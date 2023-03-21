@@ -18,52 +18,75 @@ class CarouselImage extends Model
 
     const ALIVE      = 1;
 
+    public function dataSchool()
+    {
+        return $this->belongsTo(School::class, 'school_id');
+    }
+
+    public static function getAliveItemBySiteId( $id )
+    {
+        
+        if ( $id ) {
+
+            $query = self::where( 'site_id', $id )
+                ->where( 'status', self::ALIVE )
+                ->first();
+            
+            if ( $query ) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
     public static function getAliveImagesForView( $keyWord, $paginateNumber, $orderBy )
     {
         $result = null;
 
-        $query  = DB::table( self::TABLE .' as c')
-            ->select(
-                's.school_id',
-                'c.id',
-                'c.site_id',
-                'c.name',
-                'c.title',
-                'c.description',
-                'c.image_url',
-                'c.status'
+        $query  = self::select(
+                'sites.school_id',
+                'carousel_images.id as id',
+                'carousel_images.site_id',
+                'carousel_images.name',
+                'carousel_images.title',
+                'carousel_images.description',
+                'carousel_images.image_url',
+                'carousel_images.status'
                 )
-            ->leftjoin('sites as s', 's.id', '=', 'c.site_id');
+            ->leftjoin('sites', 'sites.id', '=', 'carousel_images.site_id');
 
-
-
-        $query->whereRaw('c.name LIKE "' . $keyWord . '"');
+        $query->whereRaw('carousel_images.name LIKE "' . $keyWord . '"');
 
         if ( $orderBy == 1 ) {
 
-            $query->orderByRaw('c.name ASC');
+            $query->orderByRaw('carousel_images.name ASC');
 
         }
 
         if ( $orderBy == 2 ) {
 
-            $query->orderByRaw('c.name DESC');
+            $query->orderByRaw('carousel_images.name DESC');
 
         }
 
         if ( $orderBy == 3 ) {
 
-            $query->orderByRaw('c.created_at DESC');
+            $query->orderByRaw('carousel_images.created_at DESC');
 
         }
 
         if ( $orderBy == 4 ) {
 
-            $query->orderByRaw('c.created_at ASC');
+            $query->orderByRaw('carousel_images.created_at ASC');
 
         }
 
-        $query->whereRaw('c.status = "' . self::ALIVE . '"');
+        $query->whereRaw('carousel_images.status = "' . self::ALIVE . '"');
 
         $result = $query->paginate($paginateNumber);
 

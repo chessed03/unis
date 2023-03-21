@@ -19,25 +19,39 @@ class FaqQuestion extends Model
 
     const ALIVE      = 1;
 
+    public function dataSchool()
+    {
+        return $this->belongsTo(School::class, 'school_id');
+    }
+
+    public static function getAliveItemBySchoolId( $id )
+    {
+
+        if ( $id ) {
+
+            $query = self::where( 'school_id', $id )
+                ->where( 'status', self::ALIVE )
+                ->first();
+
+            if ( $query ) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
     public static function getAliveFaqQuestionsForView($keyWord, $paginateNumber, $orderBy)
     {
         $schools = ___getPermissionUser()->schools;
 
         $result = null;
 
-        $query = DB::table(self::TABLE);
-
-        /*$query->where(function ($q) use ($schools) {
-
-            foreach ($schools as $school_id) {
-
-                $q->orWhereJsonContains('schools', $school_id);
-
-            }
-
-        });*/
-
-        $query->whereRaw('status = "' . self::ALIVE . '"');
+        $query = self::whereRaw('status = "' . self::ALIVE . '"');
 
         $query->whereRaw('question LIKE "' . $keyWord . '"');
 
@@ -95,7 +109,7 @@ class FaqQuestion extends Model
 
         if ($item->save()) {
 
-            Binnacle::binnacleRegister('create', self::TABLE, 'event', $item->id);
+            Binnacle::binnacleRegister('create', self::TABLE, 'faq question', $item->id);
                         
             return true;
 
@@ -115,7 +129,7 @@ class FaqQuestion extends Model
 
         if ($item->update()) {
 
-            Binnacle::binnacleRegister('update', self::TABLE, 'event', $item->id);
+            Binnacle::binnacleRegister('update', self::TABLE, 'faq question', $item->id);
 
             return true;
 

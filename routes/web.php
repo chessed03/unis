@@ -13,6 +13,7 @@ use App\Http\Controllers\System\CourseController;
 use App\Http\Controllers\System\CertificationController;
 use App\Http\Controllers\System\ProgramController;
 use App\Http\Controllers\System\FaqQuestionController;
+use App\Http\Controllers\System\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
 
                 Route::get('index', 'index')->name('index');
 
-            });
+        });
 
         #Routes schools
         Route::controller(SchoolController::class)
@@ -83,7 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('update/{id}', 'update')->name('update');
                 Route::post('save-update', 'saveUpdate')->name('save-update');
 
-            });
+        });
 
     });
 
@@ -103,7 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('save-update', 'saveUpdate')->name('save-update');
                 Route::get('preview/{id}', 'preview')->name('preview');
 
-            });
+        });
 
         #Routes sites
         Route::controller(SiteController::class)
@@ -117,7 +118,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('update/{id}', 'update')->name('update');
                 Route::post('save-update', 'saveUpdate')->name('save-update');
 
-            });
+        });
 
         #Routes carousel images
         Route::controller(CarouselImageController::class)
@@ -131,7 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('update/{id}', 'update')->name('update');
                 Route::post('save-update', 'saveUpdate')->name('save-update');
 
-            });
+        });
 
         #Routes events
         Route::controller(EventController::class)
@@ -145,66 +146,78 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('update/{id}', 'update')->name('update');
                 Route::post('save-update', 'saveUpdate')->name('save-update');
 
-            });
+        });
 
         #Routes courses
         Route::controller(CourseController::class)
-        ->prefix('courses')
-        ->as('course-')
-        ->group(function () {
+            ->prefix('courses')
+            ->as('course-')
+            ->group(function () {
 
-            Route::get('index', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
-            Route::post('save-create', 'saveCreate')->name('save-create');
-            Route::get('update/{id}', 'update')->name('update');
-            Route::post('save-update', 'saveUpdate')->name('save-update');
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
 
         });
 
         #Routes certifications
         Route::controller(CertificationController::class)
-        ->prefix('certifications')
-        ->as('certification-')
-        ->group(function () {
+            ->prefix('certifications')
+            ->as('certification-')
+            ->group(function () {
 
-            Route::get('index', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
-            Route::post('save-create', 'saveCreate')->name('save-create');
-            Route::get('update/{id}', 'update')->name('update');
-            Route::post('save-update', 'saveUpdate')->name('save-update');
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
 
         });
 
         #Routes programs
         Route::controller(ProgramController::class)
-        ->prefix('programs')
-        ->as('program-')
-        ->group(function () {
+            ->prefix('programs')
+            ->as('program-')
+            ->group(function () {
 
-            Route::get('index', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
-            Route::post('save-create', 'saveCreate')->name('save-create');
-            Route::get('update/{id}', 'update')->name('update');
-            Route::post('save-update', 'saveUpdate')->name('save-update');
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
 
         });
 
         #Routes faq-questions
         Route::controller(FaqQuestionController::class)
-        ->prefix('faq-questions')
-        ->as('faq-question-')
-        ->group(function () {
+            ->prefix('faq-questions')
+            ->as('faq-question-')
+            ->group(function () {
 
-            Route::get('index', 'index')->name('index');
-            Route::get('create', 'create')->name('create');
-            Route::post('save-create', 'saveCreate')->name('save-create');
-            Route::get('update/{id}', 'update')->name('update');
-            Route::post('save-update', 'saveUpdate')->name('save-update');
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
 
         });
+
+        #Routes videos
+        Route::controller(VideoController::class)
+            ->prefix('videos')
+            ->as('video-')
+            ->group(function () {
+ 
+                Route::get('index', 'index')->name('index');
+                Route::get('create', 'create')->name('create');
+                Route::post('save-create', 'saveCreate')->name('save-create');
+                Route::get('update/{id}', 'update')->name('update');
+                Route::post('save-update', 'saveUpdate')->name('save-update');
+ 
+         });
 
     });
 
 });
-
-

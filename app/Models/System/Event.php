@@ -41,19 +41,7 @@ class Event extends Model
 
         $result = null;
 
-        $query = DB::table(self::TABLE);
-
-        /*$query->where(function ($q) use ($schools) {
-
-            foreach ($schools as $school_id) {
-
-                $q->orWhereJsonContains('schools', $school_id);
-
-            }
-
-        });*/
-
-        $query->whereRaw('status = "' . self::ALIVE . '"');
+        $query = self::whereRaw('status = "' . self::ALIVE . '"');
 
         $query->whereRaw('name LIKE "' . $keyWord . '"');
 

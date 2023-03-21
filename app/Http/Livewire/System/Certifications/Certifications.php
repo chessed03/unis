@@ -62,7 +62,7 @@ class Certifications extends Component
             $record->status = 0;
             $record->update();
 
-            $this->messageAlert( 'Evento eliminado.','success');
+            $this->messageAlert( 'Certificación eliminado.','success');
 
         }
     }

@@ -23,9 +23,7 @@ class School extends Model
 
         $result = null;
 
-        $query  = DB::table( self::TABLE );
-
-        $query->whereRaw('name LIKE "' . $keyWord . '"');
+        $query = self::whereRaw('name LIKE "' . $keyWord . '"');
 
         if ( $orderBy == 1 ) {
 
@@ -69,9 +67,9 @@ class School extends Model
     public static function getAliveSchoolsByArrayId( $schools )
     {
 
-        $result      = null;
+        $result = null;
 
-        $query       = self::whereIn('id', $schools)
+        $query  = self::whereIn('id', $schools)
             ->where('status', self::ALIVE)
             ->get();
 
@@ -144,7 +142,7 @@ class School extends Model
 
             Permission::addNewSchool( $item->id );
 
-            Binnacle::binnacleRegister( 'create', self::TABLE, 'post', $item->id );
+            Binnacle::binnacleRegister( 'create', self::TABLE, 'school', $item->id );
 
             return true;
 
@@ -180,13 +178,94 @@ class School extends Model
 
         if( $item->update() ) {
 
-            Binnacle::binnacleRegister( 'update', self::TABLE, 'post', $item->id );
+            Binnacle::binnacleRegister( 'update', self::TABLE, 'school', $item->id );
 
             return true;
 
         }
 
         return false;
+    }
+
+    public static function validateDestroy( $id )
+    {
+        
+        $result = false;
+
+        $models = [
+            'App\Models\System\Post', 
+            'App\Models\System\Site',
+            'App\Models\System\Certification', 
+            'App\Models\System\Program',
+            'App\Models\System\FaqQuestion',
+            'App\Models\System\Video'
+        ];
+
+        foreach ( $models as $model) {
+           
+            $model_name      = app($model);
+
+            $query           = $model_name::getAliveItemBySchoolId( $id );
+
+            $located         = '';
+
+            $substring_model = substr( $model, 18 );
+
+            if ($substring_model == "Post") {
+
+                $located = 'Publicaciones';
+
+            }
+
+            if ($substring_model == "Site") {
+
+                $located = 'Sitios';
+
+            }
+
+            if ($substring_model == "Certification") {
+
+                $located = 'Certificaciones';
+
+            }
+
+            if ($substring_model == "Program") {
+
+                $located = 'Programas';
+
+            }
+
+            if ($substring_model == "Program") {
+
+                $located = 'Programas';
+
+            }
+
+            if ($substring_model == "FaqQuestion") {
+
+                $located = 'Preguntas';
+
+            }
+
+            if ($substring_model == "Video") {
+
+                $located = 'Videos';
+
+            }
+            
+            if ( $query ) {
+                
+                $result = (object)[
+                    'status'  => true,
+                    'located' => $located
+                ];
+
+            }
+
+        }
+        
+        return $result;
+
     }
 
 }

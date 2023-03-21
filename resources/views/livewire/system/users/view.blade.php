@@ -317,5 +317,27 @@
 
         }
 
+        const destroy = ( id ) => {
+
+            swalWithBootstrapButtons.fire({
+                title:"Estás apunto de eliminar un registro",
+                text:"El registro ya no será visible",
+                icon:"warning",
+                showCancelButton: true,
+                confirmButtonText:"<i class='bx bx-fw bxs-check-circle'></i> Aceptar",
+                cancelButtonText: "<i class='bx bx-fw bxs-x-circle'></i> Cancelar",
+                reverseButtons: true
+            }).then(function(option){
+
+                if ( option.value ) {
+
+                    window.livewire.emit('destroy', id);
+
+                }
+
+            });
+
+        }
+
     </script>
 @endpush

@@ -37,9 +37,9 @@
 
                             <div class="row justify-content-between">
 
-                                <h6>Crear pregunta</h6>
+                                <h6>Crear video</h6>
 
-                                <a href="{{ route('faq-question-index') }}">
+                                <a href="{{ route('video-index') }}">
                                     <button type="button" class="btn btn-info elevation-2">
                                         <i class="bx bx-fw bx-chevron-left-circle"></i> Regresar
                                     </button>
@@ -51,11 +51,9 @@
 
                         <div class="card-body">
 
-                            <form action="{{ route('faq-question-save-update') }}" method="POST">
+                            <form action="{{ route('video-save-create') }}" method="POST">
 
                                 @csrf
-
-                                <input type="hidden" name="id" id="id" value="{{ $item->id }}">
 
                                 <div class="row">
 
@@ -68,23 +66,23 @@
                                                 <select name="school_id" id="school_id" class="form-control select2bs4 @error('school_id') is-invalid @enderror">
                                                     <option selected></option>
                                                     @foreach( $list_schools as $school )
-                                                        <option {{ ( $school->id == $item->school_id )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
+                                                        <option {{ ( $school->id == old('school_id') ?? '' )  ? 'selected' : '' }} value="{{ $school->id }}">{{ $school->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('school_id')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
 
-                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="question">Pregunta:</label>
-                                                <input type="text" name="question" id="question" class="form-control @error('question') is-invalid @enderror" value="{{ $item->question }}">
-                                                @error('question')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                <label for="name">Nombre:</label>
+                                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                                                @error('name')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
-
-                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="answer">Respuesta:</label>
-                                                <input type="text" name="answer" id="answer" class="form-control @error('answer') is-invalid @enderror" value="{{ $item->answer }}">
-                                                @error('answer')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                            </div>                                           
+                                            
+                                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 form-group">
+                                                <label for="video_url">URL del video:</label>
+                                                <input type="text" name="video_url" id="video_url" class="form-control @error('video_url') is-invalid @enderror" value="{{ old('video_url') }}">
+                                                @error('video_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
+                                            </div>
 
                                         </div>
 
@@ -92,7 +90,7 @@
 
                                     <div class="col-12 text-right mt-4">
 
-                                        <a href="{{ route('faq-question-index') }}">
+                                        <a href="{{ route('video-index') }}">
                                             <button type="button" class="btn btn-danger elevation-2 mr-4">
                                                 <i class="bx-fw bx bx-x-circle"></i> Cancelar
                                             </button>

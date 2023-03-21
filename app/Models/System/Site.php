@@ -19,14 +19,38 @@ class Site extends Model
 
     const ALIVE      = 1;
 
+    public function dataSchool()
+    {
+        return $this->belongsTo(School::class, 'school_id');
+    }
+
+    public static function getAliveItemBySchoolId( $id )
+    {
+
+        if ( $id ) {
+
+            $query = self::where( 'school_id', $id )
+                ->where( 'status', self::ALIVE )
+                ->first();
+
+            if ( $query ) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
     public static function getAliveSitesForView( $keyWord, $paginateNumber, $orderBy )
     {
 
         $result = null;
 
-        $query  = DB::table( self::TABLE );
-
-        $query->whereRaw('title LIKE "' . $keyWord . '"');
+        $query = self::whereRaw('title LIKE "' . $keyWord . '"');
 
         if ( $orderBy == 1 ) {
 
@@ -162,6 +186,46 @@ class Site extends Model
         }
 
         return false;
+    }
+
+    public static function validateDestroy( $id )
+    {
+        
+        $result = false;
+
+        $models = [
+            'App\Models\System\CarouselImage'
+        ];
+
+        foreach ( $models as $model) {
+           
+            $model_name      = app($model);
+
+            $query           = $model_name::getAliveItemBySiteId( $id );
+
+            $located         = '';
+
+            $substring_model = substr( $model, 18 );
+
+            if ($substring_model == "CarouselImage") {
+
+                $located = 'Carrusel de imágenes';
+
+            }
+
+            if ( $query ) {
+                
+                $result = (object)[
+                    'status'  => true,
+                    'located' => $located
+                ];
+
+            }
+
+        }
+        
+        return $result;
+
     }
 
 }

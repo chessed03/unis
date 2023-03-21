@@ -6,7 +6,7 @@
 
             <div class="col-6">
 
-                <h6>Lista de posts</h6>
+                <h6>Lista de publicaciones</h6>
 
             </div>
 
@@ -16,14 +16,14 @@
 
                     <a href="{{ route('post-create') }}">
                         <button class="btn btn-success elevation-2">
-                            <i class="bx bx-fw bxs-plus-circle"></i> Nuevo post
+                            <i class="bx bx-fw bxs-plus-circle"></i> Nueva publicación
                         </button>
                     </a>
 
                 @else
 
                     <button type="button" class="btn btn-secondary" disabled>
-                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo post
+                        <i class="bx bx-fw bxs-plus-circle"></i> Nueva publicación
                     </button>
 
                 @endif
@@ -72,6 +72,7 @@
                         <tr>
                             <th class="text-center">Titulo</th>
                             <th class="text-center">Subtitulo</th>
+                            <th class="text-center">Instituciones</th>
                             <th class="text-center"></th>
                         </tr>
                         </thead>
@@ -81,6 +82,19 @@
                                 <tr>
                                     <td>{{ $row->title }}</td>
                                     <td>{{ $row->subtitle }}</td>
+                                    <td>
+                                    
+                                        @if (  ___getNameSchools( json_decode($row->schools)) )
+
+                                            @foreach ( ___getNameSchools( json_decode($row->schools)) as $school )
+                                                
+                                                <h6><span class="badge badge-pill bg-info ml-1 mr-1">{{ $school->name }}</span></h6>
+
+                                            @endforeach
+
+                                        @endif
+
+                                    </td>
                                     <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
                                         @if( ___getAccessButton( json_decode($row->schools) ) )

@@ -22,6 +22,27 @@ class Post extends Model
 
     const ALIVE = 1;
 
+    public static function getAliveItemBySchoolId( $id )
+    {
+
+        if ( $id ) {
+
+            $query =  self::whereJsonContains('schools', $id);
+
+            $query->where( 'status', self::ALIVE );
+            
+            if ( $query->first() ) {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+
+    }
+
     public static function getAlivePostsForView($keyWord, $paginateNumber, $orderBy)
     {
         $schools = ___getPermissionUser()->schools;

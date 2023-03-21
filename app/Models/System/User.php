@@ -49,9 +49,7 @@ class User extends Model
 
         $result = null;
 
-        $query  = DB::table( self::TABLE );
-
-        $query->whereRaw('id != 1');
+        $query = self::whereRaw('id != 1');
 
         $query->whereRaw('id != ' . auth()->user()->id);
 
@@ -101,6 +99,35 @@ class User extends Model
 
     }
 
+    public static function validateUserEmail( $email, $id )
+    {
+
+        $result = null;
+
+        $query  = DB::table(self::TABLE);
+
+        if ( $id ) {
+
+            $query->where('id', '!=', $id);
+
+        }
+
+        $query->where('email', $email);
+
+        $query->where('status', self::ALIVE);
+
+        $rows = $query->count();
+
+        if ( $rows ) {
+
+            $result = $rows;
+
+        }
+
+        return $result;
+
+    }
+
     public static function createItem( $data )
     {
 
@@ -127,7 +154,6 @@ class User extends Model
 
         $item          = self::where('id', $data->id)->first();
         $item->name    = $data->name;
-        $item->schools = $data->schools;
         $item->email   = $data->email;
 
         if ( $data->password ) {
