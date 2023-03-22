@@ -60,7 +60,11 @@ class CarouselImage extends Model
                 )
             ->leftjoin('sites', 'sites.id', '=', 'carousel_images.site_id');
 
-        $query->whereRaw('carousel_images.name LIKE "' . $keyWord . '"');
+        $query->where( function( $query ) use ( $keyWord ){
+            $query->whereRaw('carousel_images.name LIKE "' . $keyWord . '"')
+                  ->orWhereRaw('carousel_images.title LIKE "' . $keyWord . '"')
+                  ->orWhereRaw('carousel_images.description LIKE "' . $keyWord . '"');
+        });
 
         if ( $orderBy == 1 ) {
 

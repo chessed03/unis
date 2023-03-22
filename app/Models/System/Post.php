@@ -63,7 +63,10 @@ class Post extends Model
 
         $query->whereRaw('status = "' . self::ALIVE . '"');
 
-        $query->whereRaw('title LIKE "' . $keyWord . '"');
+        $query->where( function( $query ) use ( $keyWord ){
+            $query->whereRaw('title LIKE "' . $keyWord . '"')
+                  ->orWhereRaw('subtitle LIKE "' . $keyWord . '"');
+        });
 
         if ($orderBy == 1) {
 

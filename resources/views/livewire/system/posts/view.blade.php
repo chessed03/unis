@@ -72,7 +72,7 @@
                         <tr>
                             <th class="text-center">Titulo</th>
                             <th class="text-center">Subtitulo</th>
-                            <th class="text-center">Instituciones</th>
+                            <th class="text-center">Institución</th>
                             <th class="text-center"></th>
                         </tr>
                         </thead>
@@ -82,7 +82,7 @@
                                 <tr>
                                     <td>{{ $row->title }}</td>
                                     <td>{{ $row->subtitle }}</td>
-                                    <td>
+                                    <td class="text-center">
                                     
                                         @if (  ___getNameSchools( json_decode($row->schools)) )
 

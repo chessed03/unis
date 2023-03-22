@@ -6,7 +6,7 @@
 
             <div class="col-6">
 
-                <h6>Lista de Preguntas</h6>
+                <h6>Lista de Enlaces</h6>
 
             </div>
 
@@ -14,16 +14,16 @@
 
                 @if( ___getAccessButton([]) )
 
-                    <a href="{{ route('faq-question-create') }}">
+                    <a href="{{ route('link-create') }}">
                         <button class="btn btn-success elevation-2">
-                            <i class="bx bx-fw bxs-plus-circle"></i> Nueva pregunta
+                            <i class="bx bx-fw bxs-plus-circle"></i> Nuevo enlace
                         </button>
                     </a>
 
                 @else
 
                     <button type="button" class="btn btn-secondary" disabled>
-                        <i class="bx bx-fw bxs-plus-circle"></i> Nueva pregunta
+                        <i class="bx bx-fw bxs-plus-circle"></i> Nuevo enlace
                     </button>
 
                 @endif
@@ -46,8 +46,8 @@
             <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                 <label for="orderBy">Ordenado</label>
                 <select wire:model='orderBy' id="orderBy" class="form-control">
-                    <option value="1">De A a la Z</option>
-                    <option value="2">De Z a la A</option>
+                    {{--<option value="1">De A a la Z</option>
+                    <option value="2">De Z a la A</option>--}}
                     <option value="3">Más recientes primero</option>
                     <option value="4">Más antiguos primero</option>
                 </select>
@@ -70,16 +70,48 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">Pregunta</th>
+                            <th class="text-center">Enlaces</th>
                             <th class="text-center">Institución</th>
-                            <th class="text-center"></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
 
                             @foreach( $rows as $key => $row )
                                 <tr>
-                                    <td>{{ $row->question }}</td>
+                                    <td>
+
+                                        @if( $row->platform_high_school_students_url != null )
+
+                                            <strong>Plataforma de estudiastes nivel preparatoria: </strong> {{ $row->platform_high_school_students_url }}
+
+                                            <br>
+
+                                        @endif
+
+                                        @if( $row->platform_high_school_teachers_url != null )
+
+                                            <strong>Plataforma de maestros nivel preparatoria: </strong> {{ $row->platform_high_school_teachers_url }}
+
+                                            <br>
+
+                                        @endif
+
+                                        @if( $row->platform_degree_students_url != null )
+
+                                            <strong>Plataforma de estudiastes nivel licenciatura: </strong> {{ $row->platform_degree_students_url }}
+
+                                            <br>
+
+                                        @endif
+
+                                        @if( $row->platform_degree_teachers_url != null )
+
+                                            <strong>Plataforma de maestros nivel licenciatura: </strong> {{ $row->platform_degree_teachers_url }}
+
+                                        @endif
+
+                                    </td>
                                     <td class="text-center"><h6><span class="badge badge-pill bg-info ml-1 mr-1">{{ $row->dataSchool->name }}</span></h6></td>
                                     <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
@@ -95,7 +127,7 @@
 
                                                 <div class="dropdown-menu">
 
-                                                    <a class="dropdown-item text-primary" href="{{ route('faq-question-update', [ 'id' => $row->id ]) }}">
+                                                    <a class="dropdown-item text-primary" href="{{ route('link-update', [ 'id' => $row->id ]) }}">
 
                                                         <i class="bx bx-fw bxs-pencil"></i> Editar
 

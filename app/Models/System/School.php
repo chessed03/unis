@@ -134,8 +134,6 @@ class School extends Model
         $item->meta_keywords         = $data->meta_keywords;
         $item->meta_description      = $data->meta_description;
         $item->image_about_us_url    = $data->image_about_us_url;
-        $item->platform_students_url = $data->platform_students_url;
-        $item->platform_teachers_url = $data->platform_teachers_url;
         $item->created_by            = auth()->user()->id."-".auth()->user()->name;
 
         if( $item->save() ) {
@@ -173,8 +171,6 @@ class School extends Model
         $item->description_about_us  = $data->description_about_us;
         $item->meta_description      = $data->meta_description;
         $item->image_about_us_url    = $data->image_about_us_url;
-        $item->platform_students_url = $data->platform_students_url;
-        $item->platform_teachers_url = $data->platform_teachers_url;
 
         if( $item->update() ) {
 

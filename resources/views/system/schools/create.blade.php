@@ -152,18 +152,6 @@
                                                 @error('meta_description')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
                                             </div>
 
-                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="platform_students_url">URL plataforma de estudiantes:</label>
-                                                <input type="text" name="platform_students_url" id="platform_students_url" class="form-control @error('platform_students_url') is-invalid @enderror" value="{{ old('platform_students_url') }}">
-                                                @error('platform_students_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                            </div>
-
-                                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                                                <label for="platform_teachers_url">URL plataforma de maestros:</label>
-                                                <input type="text" name="platform_teachers_url" id="platform_teachers_url" class="form-control @error('platform_teachers_url') is-invalid @enderror" value="{{ old('platform_teachers_url') }}">
-                                                @error('platform_teachers_url')<span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong></span>@enderror
-                                            </div>
-
                                         </div>
 
                                     </div>

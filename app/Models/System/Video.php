@@ -109,7 +109,10 @@ class Video extends Model
             
             self::where('school_id', $item->school_id)
                 ->where('id', '!=', $item->id)
-                ->update(['status' => self::INACTIVATED]);
+                ->where('status', '!=', self::REMOVED)
+                ->update([
+                    'status' => self::INACTIVATED
+                ]);
                         
             return true;
 
@@ -132,7 +135,10 @@ class Video extends Model
             
             self::where('school_id', $item->school_id)
                 ->where('id', '!=', $item->id)
-                ->update(['status' => self::INACTIVATED]);
+                ->where('status', '!=', self::REMOVED)
+                ->update([
+                    'status' => self::INACTIVATED
+                ]);
                         
             return true;
 

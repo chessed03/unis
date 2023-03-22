@@ -14,6 +14,7 @@ use App\Http\Controllers\System\CertificationController;
 use App\Http\Controllers\System\ProgramController;
 use App\Http\Controllers\System\FaqQuestionController;
 use App\Http\Controllers\System\VideoController;
+use App\Http\Controllers\System\LinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -213,10 +214,22 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('index', 'index')->name('index');
                 Route::get('create', 'create')->name('create');
                 Route::post('save-create', 'saveCreate')->name('save-create');
-                Route::get('update/{id}', 'update')->name('update');
-                Route::post('save-update', 'saveUpdate')->name('save-update');
  
          });
+
+        #Routes links
+        Route::controller(LinkController::class)
+        ->prefix('links')
+        ->as('link-')
+        ->group(function () {
+
+            Route::get('index', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('save-create', 'saveCreate')->name('save-create');
+            Route::get('update/{id}', 'update')->name('update');
+            Route::post('save-update', 'saveUpdate')->name('save-update');
+
+        });
 
     });
 

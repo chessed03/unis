@@ -50,7 +50,13 @@ class Site extends Model
 
         $result = null;
 
-        $query = self::whereRaw('title LIKE "' . $keyWord . '"');
+        $query = self::whereRaw('status = "' . self::ALIVE . '"');
+
+        $query->where( function( $query ) use ( $keyWord ){
+            $query->whereRaw('title LIKE "' . $keyWord . '"')
+                  ->orWhereRaw('base_url LIKE "' . $keyWord . '"')
+                  ->orWhereRaw('server_name LIKE "' . $keyWord . '"');
+        });
 
         if ( $orderBy == 1 ) {
 
@@ -68,15 +74,13 @@ class Site extends Model
 
             $query->orderByRaw('created_at DESC');
 
-        }
+        }  
 
         if ( $orderBy == 4 ) {
 
             $query->orderByRaw('created_at ASC');
 
         }
-
-        $query->whereRaw('status = "' . self::ALIVE . '"');
 
         $result = $query->paginate($paginateNumber);
 

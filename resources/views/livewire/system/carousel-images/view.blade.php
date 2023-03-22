@@ -70,9 +70,9 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">Institución</th>
                             <th class="text-center">Nombre</th>
-                            <th class="text-center">Subtitulo</th>
+                            <th class="text-center">Título</th>
+                            <th class="text-center">Institución</th>
                             <th class="text-center"></th>
                         </tr>
                         </thead>
@@ -80,9 +80,9 @@
 
                         @foreach( $rows as $key => $row )
                             <tr>
-                                <td>{{ $row->dataSchool->name }}</td>
                                 <td>{{ $row->name }}</td>
-                                <td>{{ $row->image_url }}</td>
+                                <td>{{ $row->title }}</td>
+                                <td class="text-center"><h6><span class="badge badge-pill bg-info ml-1 mr-1">{{ $row->dataSchool->name }}</span></h6></td>
                                 <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
                                     @if( ___getAccessButton( [ $row->school_id ] ) )

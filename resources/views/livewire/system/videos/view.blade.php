@@ -70,10 +70,9 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">Institución</th>
                             <th class="text-center">Video</th>
-                            <th class="text-center">URL</th>
                             <th class="text-center">Estado</th>
+                            <th class="text-center">Institución</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -81,9 +80,7 @@
 
                             @foreach( $rows as $key => $row )
                                 <tr>
-                                    <td>{{ $row->dataSchool->name }}</td>
                                     <td>{{ $row->name }}</td>
-                                    <td>{{ $row->video_url }}</td>
                                     <td class="text-center" wire:key="{{ $row->id }}">
 
                                         <div class="custom-control custom-switch custom-switch-on-success ml-4">
@@ -98,6 +95,7 @@
                                         </div>
 
                                     </td>
+                                    <td class="text-center"><h6><span class="badge badge-pill bg-info ml-1 mr-1">{{ $row->dataSchool->name }}</span></h6></td>
                                     <td wire:key="{{ $row->id }}" class="text-right" wire:ignore>
 
                                         @if( ___getAccessButton( [ $row->school_id ] ) )
