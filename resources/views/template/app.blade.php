@@ -79,7 +79,7 @@
 
             <footer class="main-footer text-sm">
 
-                <strong>Copyright &copy; 2022 <a href="#">{{ config('app.name', 'Laravel') }}</a>.</strong> Todos los derechos reservados.
+                <strong>Copyright &copy; 2023 <a href="#">{{ config('app.name', 'Laravel') }}</a>.</strong> Todos los derechos reservados.
 
                 <div class="float-right d-none d-sm-inline-block">
 
